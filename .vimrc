@@ -11,30 +11,23 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
+Plugin 'gmarik/Vundle.vim' "Vundle
+Plugin 'altercation/vim-colors-solarized' "Don't forget to change color to 256 in iTerm
+Plugin 'scrooloose/nerdtree' "NERDTree navigator
+Plugin 'Raimondi/delimitMate' "Close bracers automaticaly
 Plugin 'L9'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" Avoid a name conflict with L9
-" Plugin 'user/L9', {'name': 'newL9'}
-Bundle 'ack.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'bling/vim-airline'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'nvie/vim-flake8'
-
-" Enable copy to clibboard
-set clipboard=unnamed
+Plugin 'ack.vim'              " :Ack search for teams in files
+Plugin 'kien/ctrlp.vim'       "Ctrlp finds a file and open it
+Plugin 'bling/vim-airline'    "Show vim modes in footer
+Plugin 'bling/vim-bufferline' "Show vim buffers in footer. Needs airline.
+Plugin 'scrooloose/syntastic' "Show sintax error in vim window
+Plugin 'editorconfig/editorconfig-vim' "Alows the creation of a file that std vim in a team
+Plugin 'nvie/vim-flake8' "Python sintax checker
+Plugin 'jelera/vim-javascript-syntax' "Improved JS sintax
+Plugin 'pangloss/vim-javascript'      "Walk together with vim-ident-guides
+Plugin 'nathanaelkane/vim-indent-guides'  "Better indentation for JS
+Plugin 'klen/python-mode' "Python plugin
+Plugin 'mustache/vim-mustache-handlebars' "Handlebar visual plugin
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -53,18 +46,22 @@ filetype plugin indent on    " required
 
 " ======================================================
 
-
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-
 " TODO: this may not be in the correct place. It is intended to allow overriding <Leader>.
 " source ~/.vimrc.before if it exists.
 if filereadable(expand("~/.vimrc.before"))
   source ~/.vimrc.before
 endif
+" ================ Bufferline =======================
+let g:airline#extensions#bufferline#overwrite_variables = 0
+" ================= Mappings =========================
 
-" ================= Fuzzy Finder ======================
+nmap <F1> <nop>
+map <F1> <Esc>
+imap <F1> <Esc>
+map <F2> :NERDTree<CR>
+
+
+" ================= Fuzzy Finder =====================
 
 nmap ,f :FufFileWithCurrentBufferDir<CR>
 nmap ,b :FufBuffer<CR>
@@ -72,6 +69,7 @@ nmap ,t :FufTaggedFile<CR>
 
 " ================ General Config ====================
 
+set clipboard=unnamed           " Enable copy to clibboard
 set number                      "Line numbers are good
 set backspace=indent,eol,start  "Allow backspace in insert mode
 set history=1000                "Store lots of :cmdline history
@@ -81,7 +79,12 @@ set gcr=a:blinkon0              "Disable cursor blink
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
 set mouse=a                     "Add mouse to nerdtree"
-syntax on
+set hlsearch                    "Highlight current word being searched"
+
+" ================ Solarized ========================
+syntax enable
+set background=dark
+colorscheme solarized
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -93,6 +96,14 @@ set hidden
 " The mapleader has to be set before vundle starts loading all 
 " the plugins.
 let mapleader=","
+
+" =============== Javascript tweaks ==================
+
+" " YCM gives you popups and splits by default that some people might not
+" like, so these should tidy it up a bit for you.
+let g:ycm_add_preview_to_completeopt=0
+let g:ycm_confirm_extra_conf=0
+set completeopt-=preview
 
 " =============== Vundle Initialization ===============
 " This loads all the plugins specified in ~/.vim/vundle.vim
@@ -120,9 +131,9 @@ set undofile
 set autoindent
 set smartindent
 set smarttab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
 set expandtab
 
 filetype plugin on
