@@ -52,26 +52,27 @@ function dec {
 #JAVA HOME
 JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home
 
+#NVM - Node Mgmt
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
-#PATH
+#JENV - Java Mgmt
+eval "$(jenv init -)"
+PATH=${PATH}:$HOME/.jenv/bin
 PATH=${PATH}:${JAVA_HOME}/bin
-PATH=${PATH}:/usr/sbin
-PATH=${PATH}:/sbin
+
+#Brew adds in local so brew binaries come first
 PATH=${PATH}:/usr/local/bin
 PATH=${PATH}:/usr/local/sbin
-PATH=${PATH}:/usr/bin
 PATH=${PATH}:/usr/local/git/bin
+PATH=${PATH}:/usr/bin
+PATH=${PATH}:/usr/sbin
+PATH=${PATH}:/sbin
+#RVM - Ruby Mgmt
 PATH=${PATH}:$HOME/.rvm/bin
+#Packer
 PATH=${PATH}:$HOME/packer
+#Postgres
 PATH=${PATH}:/Applications/Postgres.app/Contents/Versions/9.3/bin
-PATH=${PATH}:$HOME/.jenv/bin
 
 export PATH
-
-#JENV SETUP
-eval "$(jenv init -)"
-
-#export PATH=/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:$HOME/.rvm/bin:/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/bin
-
