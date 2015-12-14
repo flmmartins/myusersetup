@@ -1,0 +1,21 @@
+[user]
+	email = flmmartins@gmail.com
+	name = Fernanda Martins
+[color]
+	ui = auto
+	diff = auto
+[core]
+	excludesfile = /Users/fmartins/.gitignore_global
+[color "diff"]
+    old = red
+    new = green
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+    br = branch
+    l = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Cblue %s %Cgreen(%cr) %C(bold blue)<%an> %Creset' --abbrev-commit
+[color "decorate"]
+    HEAD = green
+    branch = cyan
+	remoteBranch = red
