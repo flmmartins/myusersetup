@@ -49,16 +49,11 @@ function dec {
   cd /Users/fmartins/dev/key-recovery-app-decrypter
 }
 
-
-alias poaerk="ssh deploy@poaerkapp01.thoughtworks.com"
-
-alias elkrk="ssh elkkeyrecstaging01.thoughtworks.com"
-
-alias sifyerk="ssh sifyerkapp01.thoughtworks.com"
-
 #JAVA HOME
 JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 #PATH
 PATH=${PATH}:${JAVA_HOME}/bin
