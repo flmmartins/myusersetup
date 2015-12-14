@@ -14,6 +14,8 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim' "Vundle
 Plugin 'altercation/vim-colors-solarized' "Don't forget to change color to 256 in iTerm
 Plugin 'scrooloose/nerdtree' "NERDTree navigator
+Plugin 'airblade/vim-gitgutter' "show lines added and remove from files for git
+Plugin 'sjl/gundo.vim' "show saved local history from files
 Plugin 'Raimondi/delimitMate' "Close bracers automaticaly
 Plugin 'L9'
 Plugin 'ack.vim'              " :Ack search for teams in files
