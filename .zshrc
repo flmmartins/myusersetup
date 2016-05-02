@@ -61,6 +61,9 @@ eval "$(jenv init -)"
 PATH=${PATH}:$HOME/.jenv/bin
 PATH=${PATH}:${JAVA_HOME}/bin
 
+#Docker
+eval "$(docker-machine env default)"
+
 #Brew adds in local so brew binaries come first
 PATH=${PATH}:/usr/local/bin
 PATH=${PATH}:/usr/local/sbin

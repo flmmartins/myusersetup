@@ -34,6 +34,7 @@ Plugin 'hashivim/vim-vagrant' "Vagrant sintax
 Plugin 'rodjek/vim-puppet' "Puppet sintax
 Plugin 'godlygeek/tabular' " Puppet tabular
 Plugin 'elzr/vim-json'      "JSON plugin
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
