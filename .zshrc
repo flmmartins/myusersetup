@@ -29,53 +29,45 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 #FUNCTIONS
-function vsphere {
-  cd $HOME/dev/vsphere
+function vamosjuntas {
+   cd $HOME/dev/vamosjuntas
 }
 
-function levelup {
-   cd $HOME/dev/level-up
-}
-
-function gap {
-  cd $HOME/dev/dhcp_reserve
-}
-
-function enc {
-  cd /Users/fmartins/dev/key-recovery-app-encrypter
-}
-
-function dec {
-  cd /Users/fmartins/dev/key-recovery-app-decrypter
-}
-
-#JAVA HOME
-JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home
-
-#NVM - Node Mgmt
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
-#JENV - Java Mgmt
-eval "$(jenv init -)"
-PATH=${PATH}:$HOME/.jenv/bin
-PATH=${PATH}:${JAVA_HOME}/bin
-
-#Docker
-eval "$(docker-machine env default)"
-
-#Brew adds in local so brew binaries come first
+#PATH
 PATH=${PATH}:/usr/local/bin
 PATH=${PATH}:/usr/local/sbin
 PATH=${PATH}:/usr/local/git/bin
 PATH=${PATH}:/usr/bin
 PATH=${PATH}:/usr/sbin
 PATH=${PATH}:/sbin
-#RVM - Ruby Mgmt
-PATH=${PATH}:$HOME/.rvm/bin
-#Packer
+PATH=${PATH}:$HOME/.rvm/bin #Ruby Env
 PATH=${PATH}:$HOME/packer
-#Postgres
+PATH=${PATH}:$HOME/.jenv/bin
 PATH=${PATH}:/Applications/Postgres.app/Contents/Versions/9.3/bin
+#Did explore like this so Brew can overwrite apple dev tool
+export PATH="/usr/local/bin:$PATH"
 
-export PATH
+#Node Env
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+#Autoload .nvmrc file from directories
+autoload -U add-zsh-hook
+load-nvmrc() {
+  if [[ -f .nvmrc && -r .nvmrc ]]; then
+      nvm use
+    fi
+}
+add-zsh-hook chpwd load-nvmrc
+
+#Groovy
+GROOVY_HOME=/usr/local/opt/groovy/libexec
+
+#Python Env
+eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)" #Enable virtualenv automatic activation
+
+#Java Env
+#To properly set JAVA_HOME run "jenv enable-plugin export" and restart
+#Dont install it with brew, use github otherwise this will not work
+eval "$(jenv init -)"
