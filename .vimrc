@@ -93,6 +93,9 @@ set hlsearch                    "Highlight current word being searched"
 " ================ Solarized ========================
 syntax enable
 set background=dark
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+let g:solarized_termcolors=256
 colorscheme solarized
 
 " This makes vim act like all other editors, buffers can
