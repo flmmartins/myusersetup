@@ -28,13 +28,15 @@ Plugin 'nvie/vim-flake8' "Python sintax checker
 Plugin 'jelera/vim-javascript-syntax' "Improved JS sintax
 Plugin 'pangloss/vim-javascript'      "Walk together with vim-ident-guides
 Plugin 'nathanaelkane/vim-indent-guides'  "Better indentation for JS
-Plugin 'klen/python-mode' "Python plugin
 Plugin 'mustache/vim-mustache-handlebars' "Handlebar visual plugin
 Plugin 'hashivim/vim-vagrant' "Vagrant sintax
 Plugin 'rodjek/vim-puppet' "Puppet sintax
 Plugin 'godlygeek/tabular' " Puppet tabular
 Plugin 'elzr/vim-json'      "JSON plugin
-
+Plugin 'tfnico/vim-gradlex' "Recognize gradle as groovy
+Plugin 'vim-scripts/groovy' "Groovy plugin
+Plugin 'thoughtbot/vim-rspec' "Rspec Plugin
+Plugin 'sukima/xmledit' "Xml plugin
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -59,6 +61,7 @@ if filereadable(expand("~/.vimrc.before"))
 endif
 " ================ Bufferline =======================
 let g:airline#extensions#bufferline#overwrite_variables = 0
+
 " ================= Mappings =========================
 
 nmap <F1> <nop>
@@ -137,9 +140,9 @@ set undofile
 set autoindent
 set smartindent
 set smarttab
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 set expandtab
 
 filetype plugin on
