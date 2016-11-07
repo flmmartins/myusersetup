@@ -6,6 +6,7 @@
 	diff = auto
 [core]
 	excludesfile = /Users/fmartins/.gitignore_global
+	editor = vim
 [color "diff"]
     old = red
     new = green
@@ -13,8 +14,9 @@
 	co = checkout
 	ci = commit
 	st = status
-    br = branch
-    l = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Cblue %s %Cgreen(%cr) %C(bold blue)<%an> %Creset' --abbrev-commit
+  br = branch
+  l = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Cblue %s %Cgreen(%cr) %C(bold blue)<%an> %Creset' --abbrev-commit
+  p = git pull --rebase
 [color "decorate"]
     HEAD = green
     branch = cyan
