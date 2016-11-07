@@ -33,6 +33,9 @@ function vamosjuntas {
    cd $HOME/dev/vamosjuntas
 }
 
+# Set VIM as default editor
+export EDITOR=vim
+
 #PATH
 PATH=${PATH}:/usr/local/bin
 PATH=${PATH}:/usr/local/sbin
