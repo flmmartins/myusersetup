@@ -115,6 +115,16 @@ set hidden
 " the plugins.
 let mapleader=","
 
+" =============== CtrlP  ==================
+
+set wildignore+=*.swp,*.pyc,*.class,.venv,node_modules
+let g:ctrlp_show_hidden = 1
+
+" =============== NerdTree  ==================
+
+let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.swp$', '\.pyc$', '\.class$']
+
 " =============== Javascript tweaks ==================
 
 " " YCM gives you popups and splits by default that some people might not
