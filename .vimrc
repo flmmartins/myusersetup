@@ -61,6 +61,8 @@ if filereadable(expand("~/.vimrc.before"))
 endif
 " ================ Bufferline =======================
 let g:airline#extensions#bufferline#overwrite_variables = 0
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 
 " ================= Mappings =========================
 
@@ -77,7 +79,7 @@ nmap ,b :FufBuffer<CR>
 nmap ,t :FufTaggedFile<CR>
 
 " ================ General Config ====================
-
+set encoding=utf-8
 set clipboard=unnamed           " Enable copy to clibboard
 set number                      "Line numbers are good
 set backspace=indent,eol,start  "Allow backspace in insert mode
@@ -89,6 +91,10 @@ set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
 set mouse=a                     "Add mouse to nerdtree"
 set hlsearch                    "Highlight current word being searched"
+
+" Cursor line hightlight
+highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+set cursorline
 
 " ================ Solarized ========================
 syntax enable
@@ -143,10 +149,10 @@ set undofile
 set autoindent
 set smartindent
 set smarttab
+set expandtab
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
-set expandtab
 
 filetype plugin on
 filetype indent on
