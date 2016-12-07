@@ -37,6 +37,8 @@ Plugin 'tfnico/vim-gradlex' "Recognize gradle as groovy
 Plugin 'vim-scripts/groovy' "Groovy plugin
 Plugin 'thoughtbot/vim-rspec' "Rspec Plugin
 Plugin 'sukima/xmledit' "Xml plugin
+Plugin 'klen/python-mode'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
