@@ -9,7 +9,7 @@ discover_os_and_pkg_manager () {
     'Linux')
       OS=$(awk '{print $1}' /etc/issue)
       if [[ "$OS" == "Ubuntu" ]]; then
-        PACKAGE_MANAGER="apt"
+        PACKAGE_MANAGER="apt-get"
       else
         PACKAGE_MANAGER="yum"
       fi
@@ -65,10 +65,16 @@ switch_caps_to_ctrl () {
 discover_os_and_pkg_manager
 switch_caps_to_ctrl
 
+
 echo "---------------------------------"
-echo "Installing Vim and Git"
+echo "Updating Package List"
 echo "---------------------------------"
-sudo $PACKAGE_MANAGER install vim git curl wget
+sudo $PACKAGE_MANAGER update
+
+echo "---------------------------------"
+echo "Installing Packages"
+echo "---------------------------------"
+sudo $PACKAGE_MANAGER install vim git curl wget flashplugin-installer wine dropbox playonlinux guake chromium-browser
 
 echo "---------------------------------"
 echo "Configuring Git and Vim"
@@ -88,3 +94,8 @@ echo "---------------------------------"
 echo "Installing Oh My ZSH"
 echo "---------------------------------"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+
+echo "---------------------------------"
+echo "Download Evernote Manually and run wine <installer>"
+echo "---------------------------------"
