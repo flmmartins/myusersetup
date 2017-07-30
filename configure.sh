@@ -1,7 +1,8 @@
 #!/bin/bash
 OS=''
 PACKAGE_MANAGER=''
-VUNDLE_DIR="~/.vim/bundle/Vundle.vim"
+VUNDLE_DIR=~/.vim/bundle/Vundle.vim
+OHMYZSH_DIR=~/.oh-my-zsh
 
 discover_os_and_pkg_manager () {
   OS_CMD=$(uname)
@@ -13,11 +14,6 @@ discover_os_and_pkg_manager () {
       else
         PACKAGE_MANAGER="yum"
       fi
-      ;;
-    'WindowsNT')
-      OS='Windows'
-      #TODO: Create container
-      PACKAGE_MANAGER="yum"
       ;;
     'Darwin')
       OS='MAC'
@@ -46,36 +42,32 @@ switch_caps_to_ctrl () {
       ;;
     'MAC')
       ;;
-    'Windows')
-      echo "---------------------------------"
-      echo "Not necessary to configure keyboard on $OS"
-      echo "---------------------------------"
-      ;;
     *)
       #TODO: Test in CentOS
       sudo xmodmap -e 'keycode 66 = Control_L'
       sudo xmodmap -e 'clear Lock'
       sudo xmodmap -e 'add Control = Control_L'
-      sudo xmodmap -pke >~/.Xmodmap
+      xmodmap -pke | sudo tee -a ~/.Xmodmap
       sudo xmodmap .Xmodmap
       ;;
   esac
 }
 
 install_enpass_ubuntu () {
-  sudo echo "deb http://repo.sinew.in/ stable main" > /etc/apt/sources.list.d/enpass.list
-  wget -O - https://dl.sinew.in/keys/enpass-linux.key | apt-key add -
-  apt-get update
-  apt-get install enpass
+  echo "deb http://repo.sinew.in/ stable main" | sudo tee -a /etc/apt/sources.list.d/enpass.list > /dev/null
+  wget -O - https://dl.sinew.in/keys/enpass-linux.key | sudo apt-key add -
+  sudo apt-get update
+  sudo apt-get install enpass  
 }
 
 install_enpass_redhat () {
   #TODO: Not tested
   wget https://dl.sinew.in/linux/setup/5-5-6/Enpass_Installer_5.5.6
   chmod +x EnpassInstaller
-  yum install libXScrnSaver lsof
-  ./EnpassInstaller
+  sudo yum install libXScrnSaver lsof
+  sudo ./EnpassInstaller
 }
+
 discover_os_and_pkg_manager
 switch_caps_to_ctrl
 
@@ -90,9 +82,11 @@ echo "Installing Packages"
 echo "---------------------------------"
 sudo $PACKAGE_MANAGER install vim git curl wget flashplugin-installer wine dropbox chromium-browser shellcheck
 
-if [[ $OS == "Ubuntu" ]]; then
+if [ "$OS" == "Ubuntu" ]; then
   sudo $PACKAGE_MANAGER install guake playonlinux
   install_enpass_ubuntu
+elif [ "$OS" == "MAC" ]; then
+  echo "TODO: install brew packages for Mac"
 else
   install_enpass_redhat
 fi
@@ -111,11 +105,12 @@ if [[ ! -d $VUNDLE_DIR ]]; then
   vim +PluginInstall +qall
 fi
 
-echo "---------------------------------"
-echo "Installing Oh My ZSH"
-echo "---------------------------------"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
+if [[ ! -d $OHMYZSH_DIR ]]; then
+  echo "---------------------------------"
+  echo "Installing Oh My ZSH"
+  echo "---------------------------------"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
 
 echo "---------------------------------"
 echo "Download Evernote Manually and run wine <installer>"
