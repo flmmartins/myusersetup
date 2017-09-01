@@ -3,8 +3,8 @@ VUNDLE_DIR=~/.vim/bundle/Vundle.vim
 
 copy_dotfiles () {
   src_file=$1
-  dest_file=${basename "$src_file"}
-	if [ ! -f "$HOME/$file" ]; then
+  dest_file=$(echo $src_file | cut -d '/' -f 2 )
+	if [ ! -f "$HOME/$dest_file" ]; then
 		echo "---------------------------------"
 		echo "Copying dotfile $dest_file to HOME"
 		echo "---------------------------------"
