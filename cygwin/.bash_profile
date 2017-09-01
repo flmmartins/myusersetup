@@ -89,12 +89,16 @@ function start_agent {
     /usr/bin/ssh-add;
 }
 
-function customizeps1 {
+function customize_prompt {
     #Solve cygwin breakline problem
     TERM=cygwin
     export TERM
+
+    CYAN="\e[36m\]"
+    YELLOW="\e[33m\]"
+
     source /git-prompt.sh
-    export PS1="\[\e[32m\]\W\[\e[0m\]$(__git_ps1 ' (%s)')\$"
+    export PS1="${WHITE}\W${YELLOW}\$(__git_ps1 ' (%s)')${WHITE}\$"
     export GIT_PS1_SHOWDIRTYSTATE=1
     export GIT_PS1_SHOWSTASHSTATE=1
     export GIT_PS1_SHOWUNTRACKEDFILES=1
@@ -111,4 +115,4 @@ else
     start_agent;
 fi
 
-customizeps1
+customize_prompt
