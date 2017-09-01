@@ -46,10 +46,17 @@ fi
 # Enable proxy given a proxy address
 PROXY_USER=""
 PROXY_PWD=""
+PROXY_URL=""
 SSH_ENV="$HOME/.ssh/agent.env"
 
-function enable_proxy {
-	proxy_url="myproxy-url:port"
+set_proxy_url () {
+	echo -n "Proxy URL with port without user info:"
+	read -s PROXY_URL
+	printf "\n"
+}
+
+
+enable_proxy () {
 	echo "Activating proxy"
 	echo -n "User:"
 	read -s PROXY_USER
@@ -57,7 +64,8 @@ function enable_proxy {
 	echo -n "Password:"
 	read -s PROXY_PWD
 	printf "\n"
-	proxy="http://${PROXY_USER}:${PROXY_PWD}@${proxy_url}"
+	PROXY_URL="http://my-default-proxy:port"
+	proxy="http://${PROXY_USER}:${PROXY_PWD}@${PROXY_URL}"
 	for env_var in {http,https,ssh,ftp}_proxy {HTTP,HTTPS,SSH,FTP}_PROXY
 	do
 		export "${env_var}"="${proxy}";
@@ -70,15 +78,14 @@ function enable_proxy {
 }
 
 
-function disable_proxy {
+disable_proxy () {
 	unset {http,https,ssh,ftp}_proxy {HTTP,HTTPS,SSH,FTP}_PROXY
 	unset PROXY_USER
 	unset PROXY_PWD
 	echo "Proxy and variables are UNset"
 }
 
-
-function start_agent {
+start_agent () {
     echo "Initialising new SSH agent..."
     OLD_UMASK=$(umask 077)
     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}" 
@@ -89,7 +96,7 @@ function start_agent {
     /usr/bin/ssh-add;
 }
 
-function customize_prompt {
+customize_prompt () {
     #Solve cygwin breakline problem
     TERM=cygwin
     export TERM
@@ -105,7 +112,10 @@ function customize_prompt {
     export GIT_PS1_SHOWCOLORHINTS=1
 }
 
+
 # Source SSH settings, if applicable
+# This was done cause otherwise cygwin was going to instantiate agents like crazy
+# everytime I opened a new windows
 if [ -f "${SSH_ENV}" ]; then
     . "${SSH_ENV}" > /dev/null
     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {

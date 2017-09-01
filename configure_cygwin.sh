@@ -6,10 +6,10 @@ if [ ! -f "/bin/apt-cyg" ]; then
 	install apt-cyg /bin
 fi
 
-apt-cyg install wget vim curl zip unzip git zsh
+apt-cyg install wget vim curl zip unzip git
 
 # Ansible Packages
-apt-cyg python python-paramiko python-crypto python-openssl python-setuptools python-devel nano openssh openssl openssl-devel gmp libgmp-devel make gcc-core
+apt-cyg install python python-paramiko python-crypto python-openssl python-setuptools python-devel nano openssh openssl openssl-devel gmp libgmp-devel make gcc-core
 
 # Ansible Configuration for Cygwin
 if [ ! -d "opt/ansible" ]; then
