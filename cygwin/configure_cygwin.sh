@@ -4,7 +4,18 @@ if [ ! -f "/bin/apt-cyg" ]; then
 	echo "Installing apt-cyg"
 	wget rawgit.com/transcode-open/apt-cyg/master/apt-cyg
 	install apt-cyg /bin
-	apt-cyg install vim curl zip unzip git zsh
+fi
+
+apt-cyg install wget vim curl zip unzip git zsh
+
+# Ansible Packages
+apt-cyg python python-paramiko python-crypto python-openssl python-setuptools python-devel nano openssh openssl openssl-devel gmp libgmp-devel make gcc-core
+
+# Ansible Configuration for Cygwin
+if [ ! -d "opt/ansible" ]; then
+	easy_install-2.7 pip
+	CFLAGS="-g -O2 -D_BSD_SOURCE" pip install -U pycrypto
+	pip install ansible
 fi
 
 if [ ! -d "$HOME/.ssh" ]; then
