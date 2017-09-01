@@ -1,4 +1,16 @@
 #!/bin/bash
+VUNDLE_DIR=~/.vim/bundle/Vundle.vim
+
+copy_dotfiles () {
+  src_file=$1
+  dest_file=${basename "$src_file"}
+	if [ ! -f "$HOME/$file" ]; then
+		echo "---------------------------------"
+		echo "Copying dotfile $dest_file to HOME"
+		echo "---------------------------------"
+		cp $src_file $HOME/$dest_file
+	fi
+}
 
 if [ ! -f "/bin/apt-cyg" ]; then
 	echo "Installing apt-cyg"
@@ -18,13 +30,36 @@ if [ ! -d "opt/ansible" ]; then
 	pip install ansible
 fi
 
-if [ ! -d "$HOME/.ssh" ]; then
-	echo "SSH setup"
-	mkdir -p $HOME/.ssh
-	chmod 0700 $HOME/.ssh
-	ssh-keygen -t rsa -b 4096 -C "flmmartins@gmail.com"
-fi
-
+#Cygwin Prompt
 if [ ! -f "/git-prompt.sh" ]; then
 	wget -O /git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+fi
+
+if [ ! -d "$HOME/.ssh" ]; then
+	echo "---------------------------------"
+	echo "SSH setup"
+	echo "---------------------------------"
+	mkdir -p $HOME/.ssh
+	chmod 0700 $HOME/.ssh
+fi
+
+copy_dotfiles .gitconfig
+copy_dotfiles .vimrc
+copy_dotfiles cygwin/.bash_profile
+
+#Fix Solarize bug with Vundle
+if [ ! -f $HOME/.vim/colors/solarized.vim ]; then
+	echo "---------------------------------"
+	echo "Solarize colorscheme setup"
+	echo "---------------------------------"
+  cp $HOME/.vim/bundle/vim-colors-solarized/colors/solarized.vim $HOME/.vim/colors/
+fi
+
+
+if [[ ! -d $VUNDLE_DIR ]]; then
+  echo "---------------------------------"
+  echo "Installing Vundle"
+  echo "---------------------------------"
+  git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+  vim +PluginInstall +qall
 fi
