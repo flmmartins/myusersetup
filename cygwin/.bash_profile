@@ -101,11 +101,13 @@ customize_prompt () {
     TERM=cygwin
     export TERM
 
-    CYAN="\e[36m\]"
-    YELLOW="\e[33m\]"
+    YELLOW="\[$(tput setaf 3)\]"
+    GREEN="\[$(tput setaf 2)\]"
+    RESET="\[$(tput sgr0)\]"
 
     source /git-prompt.sh
-    export PS1="${WHITE}\W${YELLOW}\$(__git_ps1 ' (%s)')${WHITE}\$"
+    #export PS1="\W\$(__git_ps1 \" ${YELLOW}(%s)${RESET}\") \$"
+    export PS1="${RESET}\W\$(__git_ps1 \"${YELLOW}(%s)\")${GREEN}\$${RESET}"
     export GIT_PS1_SHOWDIRTYSTATE=1
     export GIT_PS1_SHOWSTASHSTATE=1
     export GIT_PS1_SHOWUNTRACKEDFILES=1
