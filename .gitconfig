@@ -1,29 +1,23 @@
 [user]
-	email = flmmartins@gmail.com
-	name = Fernanda Martins
+  email = flmmartins@gmail.com
+  name = Fernanda Martins
 [color]
-	ui = auto
-	diff = auto
+  ui = auto
+  diff = auto
 [core]
-	excludesfile = /Users/fmartins/.gitignore_global
-	editor = vim
+  excludesfile = /home/flmmartins/.gitignore_global
+  editor = vim
 [color "diff"]
-    old = red
-    new = green
+  old = red
+  new = green
 [alias]
-	co = checkout
-	ci = commit
-	st = status
+  co = checkout
+  ci = commit
+  st = status
   br = branch
-  l = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Cblue %s %Cgreen(%cr) %C(bold blue)<%an> %Creset' --abbrev-commit
+  l = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%C(bold blue) %s %Cgreen(%cr) %C(bold blue)<%an> %Creset' --abbrev-commit
   p = git pull --rebase
 [color "decorate"]
-    HEAD = green
-    branch = cyan
-	remoteBranch = red
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  HEAD = green
+  branch = cyan
+  remoteBranch = red
