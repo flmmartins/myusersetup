@@ -1,0 +1,8 @@
+---
+- name: "Update Cache"
+  yum: update_cache=yes
+  
+- name: "Install packages"
+  yum: state=present name={{ item }}
+  with_items: "{{ base-packages }}"
+  become: true

@@ -1,0 +1,14 @@
+---
+- name: "Install package in CentOS"
+  yum: state=present name=vim
+  become: true
+  when: ansible_os_family == "CentOS"
+
+- name: "Install package in Mac"
+  homebrew: state=present name=vim
+  become: true
+  when: ansible_os_family == "MacOSX"
+
+- name: "Install package in Debian"
+  apt: state=present name=vim
+  when: ansible_os_family == "Debian"

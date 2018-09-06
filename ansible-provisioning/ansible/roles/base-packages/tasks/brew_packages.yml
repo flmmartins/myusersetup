@@ -1,0 +1,14 @@
+---
+- name: "Install brew"
+  shell: "/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  become: true
+  
+- name: "Update brew in case it already exists"
+  homebrew:
+    update_homebrew: yes
+  become: true
+
+- name: "Install packages"
+  homebrew: state=present name={{ item }}
+  with_items: "{{ base-packages }}"
+  become: true

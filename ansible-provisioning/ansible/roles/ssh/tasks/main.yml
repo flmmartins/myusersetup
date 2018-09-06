@@ -1,0 +1,15 @@
+---
+- name: "Creates SSH folder"
+  file: 
+    path: "{{ ansible_env.HOME }}/.ssh"
+    state: directory
+    mode: 0640
+
+- name: "Creates SSH config"
+  file:
+    src: ssh_config
+    dest: "{{ ansible_env.HOME }}/.ssh/config"
+    state: file
+    mode: 0700
+
+- include: github.yml
