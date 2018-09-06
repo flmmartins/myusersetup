@@ -12,3 +12,9 @@
 - name: "Install package in Debian"
   apt: state=present name=git
   when: ansible_os_family == "Debian"
+
+- name: "Adds git config file"
+  file:
+    src: gitconfig
+    dest: "{{ ansible_env.HOME }}/.gitconfig"
+    state: file
