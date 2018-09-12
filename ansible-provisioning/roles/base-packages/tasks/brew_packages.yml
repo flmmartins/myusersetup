@@ -1,6 +1,6 @@
 ---
 - name: "Install brew"
-  shell: "/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  shell: "ruby -e '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)' </dev/null"
   args:
     creates: "/usr/local/Cellar"
   become: true
@@ -14,3 +14,13 @@
   homebrew: state=present name={{ item }}
   with_items: "{{ base-packages }}"
   become: true
+
+# ---------------------------------
+# Install OMZ shell
+# ---------------------------------
+- include: zsh.yml
+
+# ---------------------------------
+# RVM installation
+# ---------------------------------
+- include: rvm.yml

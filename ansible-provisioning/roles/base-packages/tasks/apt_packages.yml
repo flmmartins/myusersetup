@@ -6,3 +6,20 @@
   apt: state=present name={{ item }}
   with_items: "{{ base-packages }}"
   become: true
+
+# ---------------------------------
+# Special RVM installation
+# ---------------------------------
+
+- debug: msg="Beginning RVM Installation"
+
+- name: "Install dependencies for RVM"
+  apt: state=present name=software-properties-common
+
+- name: "Add repository for RVM and then update cache"
+  apt_repository:
+    repo: ppa:rael-gc/rvm
+    state: present
+
+- name: "Install RVM"
+  apt: state=present name=rvm

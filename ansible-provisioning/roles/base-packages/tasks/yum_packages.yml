@@ -6,3 +6,8 @@
   yum: state=present name={{ item }}
   with_items: "{{ base-packages }}"
   become: true
+
+# ---------------------------------
+# RVM installation
+# ---------------------------------
+- include: rvm.yml

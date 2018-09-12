@@ -1,0 +1,6 @@
+---
+- name: "Install RVM"
+  shell: "curl -sSL https://get.rvm.io | bash -s stable --ruby"
+  args:
+    creates: "{{ ansible_env.HOME }}/.rvm"
+  become: true
