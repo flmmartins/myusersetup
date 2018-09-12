@@ -1,3 +1,10 @@
 ---
 - name: "Creates SSH key"
-  debug: msg="This is under construction"
+  shell: "ssh-keygen -t rsa -b 4096 -C '{{ ansible_hostname }}' -f {{ github_key_path }} -N {{ passphrase }}"
+  args:
+    creates: "{{ github_key_path }}"
+
+- name: "Fetch public key - please add this to github"
+  debug: var=item
+  with_file:
+  - "{{ github_key_path }}.pub"

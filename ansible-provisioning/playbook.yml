@@ -1,6 +1,7 @@
 - hosts: all
   roles:
      - base-packages
+     - ssh
      - vim
      - git
       

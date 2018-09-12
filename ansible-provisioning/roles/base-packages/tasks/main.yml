@@ -4,6 +4,9 @@
 
 - include: brew_packages.yml
   when: ansible_os_family == "MacOSX"
+  
+- include: zsh.yml
+  when: ansible_os_family == "MacOSX"
 
 - include: apt_packages.yml
   when: ansible_os_family == "Debian"

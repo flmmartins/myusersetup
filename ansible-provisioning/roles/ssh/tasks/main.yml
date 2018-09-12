@@ -6,10 +6,9 @@
     mode: 0640
 
 - name: "Creates SSH config"
-  file:
-    src: ssh_config
+  template:
+    src: ssh_config.j2
     dest: "{{ ansible_env.HOME }}/.ssh/config"
-    state: file
     mode: 0700
 
 - include: github.yml

@@ -12,3 +12,19 @@
 - name: "Install package in Debian"
   apt: state=present name=vim
   when: ansible_os_family == "Debian"
+
+- name: "Installs Vundle"
+  git:
+    repo: "https://github.com/VundleVim/Vundle.vim.git"
+    dest: "{{ ansible_env.HOME }}/.vim/bundle/Vundle.vim"
+
+- name: "Adds vimrc file"
+  file:
+    src: vimrc
+    dest: "{{ ansible_env.HOME }}/.vimrc"
+    state: file
+
+- name: "Install plugins from vimrc in non-interactive mode"
+  shell: "echo | echo | vim +PluginInstall +qall &>/dev/null"
+  args:
+    chdir: {{ ansible_env.HOME }}
