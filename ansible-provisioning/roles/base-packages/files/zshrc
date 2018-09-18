@@ -43,16 +43,16 @@ PATH=${PATH}:/usr/local/git/bin
 PATH=${PATH}:/usr/bin
 PATH=${PATH}:/usr/sbin
 PATH=${PATH}:/sbin
-PATH=${PATH}:$HOME/.rvm/bin #Ruby Env
-PATH=${PATH}:$HOME/packer
-PATH=${PATH}:$HOME/.jenv/bin
-PATH=${PATH}:/Applications/Postgres.app/Contents/Versions/9.3/bin
+#PATH=${PATH}:$HOME/.rvm/bin #Ruby Env
+#PATH=${PATH}:$HOME/packer
+#PATH=${PATH}:$HOME/.jenv/bin
+#PATH=${PATH}:/Applications/Postgres.app/Contents/Versions/9.3/bin
 #Did explore like this so Brew can overwrite apple dev tool
 export PATH="/usr/local/bin:$PATH"
 
 #Node Env
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+. "/usr/local/opt/nvm/nvm.sh"
 
 #Autoload .nvmrc file from directories
 autoload -U add-zsh-hook
