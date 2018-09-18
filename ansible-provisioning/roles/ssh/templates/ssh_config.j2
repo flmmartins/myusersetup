@@ -5,3 +5,11 @@ Host github.com
   	PreferredAuthentications publickey
   	Port 22
   	IdentityFile {{ github_key_path }}
+
+########Jump between hosts from one ssh to another#####
+#Host firstjump
+#    Hostname <a hostname>
+#    User fmartins
+
+#Host secondjump
+#    ProxyCommand /usr/bin/ssh -q firstjump /usr/bin/nc finalhostname.com 22
