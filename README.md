@@ -2,7 +2,7 @@
 Run
 
 ```bash
-ansible-playbook -kK --ask-vault-pass ansible-provisioning/playbook.yml
+ansible-playbook -kK --ask-vault-pass playbook.yml
 ```
 
 Linux playbooks and conditionals are not tested yet
