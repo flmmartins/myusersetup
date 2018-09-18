@@ -1,13 +1,13 @@
-# Run ansible
+# Linux/Mac Provision
+Run
+
+```bash
 ansible-playbook -kK --ask-vault-pass ansible-provisioning/playbook.yml
+```
 
-# SSH Tips
+Linux playbooks and conditionals are not tested yet
 
-ssh-keygen -t rsa -b 4096 -C "[Machine] - Work/Personal"
-
-## Manage Passphrase
-
-To avoid having to type this passphrase every time you need to use a key, most operating systems have a concept of a key agent. This key agent stores SSH keys securely between uses, typically the first time a key is needed in a given time period, the SSH agent will load the key, prompt you for your passphrase and then the key agent will remember the key for a certain amount of time (on OSX it tends to be indefinite, on linux this can vary from 15 minutes upwards.)
+# SSH Command Tips
 
 ## Check keys
 
@@ -26,9 +26,9 @@ ssh-add -t *h <key_path>
 ```bash
 ssh-add -L
 ```
-## Run configure.sh
 
-# Cygwin
+
+# Windows Provisioning (not finalized)
 The configure_cygwin script configures cygwin
 
 ## Requirements to run
@@ -43,5 +43,3 @@ TODO: Put them in Chocolatey automation
 - SupperPutty
 - WinSCP
 - GitHub or GitSCM
-
-## Run configure_cygwin
