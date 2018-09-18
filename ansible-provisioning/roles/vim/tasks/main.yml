@@ -27,4 +27,4 @@
 - name: "Install plugins from vimrc in non-interactive mode"
   shell: "echo | echo | vim +PluginInstall +qall &>/dev/null"
   args:
-    chdir: {{ ansible_env.HOME }}
+    chdir: "{{ ansible_env.HOME }}"
