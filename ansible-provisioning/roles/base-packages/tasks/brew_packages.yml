@@ -1,16 +1,37 @@
 ---
+- name: "Set fact with package list"
+  set_fact:
+    cask_packages: "{{ app_packages }} + {{ mac_packages }}"
+
 - name: "Install brew"
   shell: "/usr/bin/ruby -e '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)'"
   args:
     creates: "/usr/local/Cellar"
   become: true
-  
+
 - name: "Update brew in case it already exists"
   homebrew:
     update_homebrew: yes
-  become: true
 
-- name: "Install packages"
-  homebrew: state=present name={{ item }}
-  with_items: "{{ base-packages }}"
-  become: true
+- name: "[DGOS] Add repository tap"
+  homebrew_tap:
+    name: rajatvig/rajat
+    state: present
+
+- name: "[NVM] Creates NVM folder"
+  file:
+    path: "{{ ansible_env.HOME }}/.nvm"
+    state: directory
+    mode: 0644
+
+- name: "Install cli packages"
+  homebrew:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ cli_packages  }}"
+
+- name: "Install graphical packages"
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ cask_packages }}"

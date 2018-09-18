@@ -1,3 +1,6 @@
+# Run ansible
+ansible-playbook -kK --ask-vault-pass ansible-provisioning/playbook.yml
+
 # SSH Tips
 
 ssh-keygen -t rsa -b 4096 -C "[Machine] - Work/Personal"

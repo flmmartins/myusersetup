@@ -3,10 +3,10 @@
   when: ansible_os_family == "CentOS"
 
 - include: brew_packages.yml
-  when: ansible_os_family == "MacOSX"
-  
+  when: ansible_os_family == "Darwin"
+
 - include: zsh.yml
-  when: ansible_os_family == "MacOSX"
+  when: ansible_os_family == "Darwin"
 
 - include: apt_packages.yml
   when: ansible_os_family == "Debian"

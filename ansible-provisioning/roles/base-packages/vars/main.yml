@@ -1,1 +1,3 @@
-base-packages: ['curl', 'wget']
+cli_packages: ['curl', 'wget', 'nvm', 'npm', 'terraform', 'jenv', 'packer', 'goss']
+app_packages: ['google-chrome', 'firefox', 'franz', 'postgres', 'evernote', 'docker']
+mac_packages: ['iterm2', 'macdown', '1password']

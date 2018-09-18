@@ -1,8 +1,12 @@
 ---
+- name: "Set fact with package list"
+  set_fact:
+    packages: "{{ app_packages }} + {{ cli_packages }}"
+
 - name: "Update cache"
   apt: update_cache=yes
 
 - name: "Install packages"
   apt: state=present name={{ item }}
-  with_items: "{{ base-packages }}"
+  with_items: "{{ packages }}"
   become: true
