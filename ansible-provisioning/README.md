@@ -1,1 +1,0 @@
-WIP: This will substitue all my shell scripts to ansible code
