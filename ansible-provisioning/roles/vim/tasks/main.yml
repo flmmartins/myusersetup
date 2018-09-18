@@ -6,7 +6,6 @@
 
 - name: "Install package in Mac"
   homebrew: state=present name=vim
-  become: true
   when: ansible_os_family == "Darwin"
 
 - name: "Install package in Debian"
