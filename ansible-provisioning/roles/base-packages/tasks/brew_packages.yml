@@ -22,7 +22,7 @@
   file:
     path: "{{ ansible_env.HOME }}/.nvm"
     state: directory
-    mode: 0644
+    mode: 0744
 
 - name: "Install cli packages"
   homebrew:
