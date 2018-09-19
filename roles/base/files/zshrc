@@ -28,11 +28,14 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+#Source AWS keys
+source $HOME/.aws
+
 # Set VIM as default editor
 export EDITOR=vim
 
 # Load ssh passphrase
-eval "$(ssh-agent -s)"
+if [[ $(ps aux | grep ssh | grep -vc grep) -eq 0 ]]; then eval "$(ssh-agent -s)"; fi
 ssh-add -t 28800 -K ~/.ssh/id_rsa
 
 
@@ -64,13 +67,13 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 
 #Groovy
-GROOVY_HOME=/usr/local/opt/groovy/libexec
+#GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 #Python Env
-eval "$(pyenv init -)"
+#eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)" #Enable virtualenv automatic activation
 
 #Java Env
 #To properly set JAVA_HOME run "jenv enable-plugin export" and restart
 #Dont install it with brew, use github otherwise this will not work
-eval "$(jenv init -)"
+#eval "$(jenv init -)"

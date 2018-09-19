@@ -1,9 +1,7 @@
 - hosts: 127.0.0.1
   connection: local
   roles:
-     - base-packages
-     - ssh
-     - vim
-     - git
-      
-
+    - {role: base}
+    - {role: ssh, tags: ['ssh']}
+    - {role: git, tags: ['git']}
+    - {role: vim, tags: ['vim']}

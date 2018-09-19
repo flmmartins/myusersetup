@@ -1,12 +1,16 @@
 ---
 - include: yum_packages.yml
   when: ansible_os_family == "CentOS"
+  tags: ['packages']
 
 - include: brew_packages.yml
   when: ansible_os_family == "Darwin"
+  tags: ['packages']
 
 - include: zsh.yml
   when: ansible_os_family == "Darwin"
+  tags: ['shell']
 
 - include: apt_packages.yml
   when: ansible_os_family == "Debian"
+  tags: ['packages']
