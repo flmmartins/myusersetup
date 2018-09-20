@@ -6,10 +6,21 @@ Host github.com
   	Port 22
   	IdentityFile {{ github_key_path }}
 
-########Jump between hosts from one ssh to another#####
+########Jump between hosts from one ssh to another. Need to start ssh-agent and add keys to it#####
 #Host firstjump
 #    Hostname <a hostname>
-#    User fmartins
+#    User <a user>
+#    PreferredAuthentications publickey
+#    Port 22
+#    IdentityFile <key>
+#    ForwardAgent   yes //Enable this only if necessary
 
-#Host secondjump
+#Host secondjump1 - simple jump
 #    ProxyCommand /usr/bin/ssh -q firstjump /usr/bin/nc finalhostname.com 22
+
+#Host secondjump2 - enable this with Forwarding
+#  User <a user>
+#  Hostname <bla>
+#  ProxyCommand ssh firstjump nc %h %p
+#  IdentityFile <key>
+#  ForwardAgent   yes

@@ -35,8 +35,8 @@ source $HOME/.aws
 export EDITOR=vim
 
 # Load ssh passphrase
-if [[ $(ps aux | grep ssh | grep -vc grep) -eq 0 ]]; then eval "$(ssh-agent -s)"; fi
-ssh-add -t 28800 -K ~/.ssh/id_rsa
+eval $(ssh-agent -s)
+ssh-add -t 28800 -K $HOME/.ssh/id_rsa
 
 
 #PATH

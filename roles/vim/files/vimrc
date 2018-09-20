@@ -36,6 +36,7 @@ Plugin 'elzr/vim-json'      "JSON plugin
 Plugin 'thoughtbot/vim-rspec' "Rspec Plugin
 Plugin 'sukima/xmledit' "Xml plugin
 Plugin 'klen/python-mode'
+Plugin 'martinda/Jenkinsfile-vim-syntax' "Jenkinsfile plugin
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -70,7 +71,6 @@ nmap <F1> <nop>
 map <F1> <Esc>
 imap <F1> <Esc>
 map <F2> :NERDTree<CR>
-
 
 " ================= Fuzzy Finder =====================
 
