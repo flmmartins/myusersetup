@@ -3,21 +3,6 @@
   set_fact:
     cask_packages: "{{ app_packages }} + {{ mac_packages }}"
 
-- name: "Install brew"
-  shell: "/usr/bin/ruby -e '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)'"
-  args:
-    creates: "/usr/local/Cellar"
-  become: true
-
-- name: "Update brew in case it already exists"
-  homebrew:
-    update_homebrew: yes
-
-- name: "[DGOS] Add repository tap"
-  homebrew_tap:
-    name: rajatvig/rajat
-    state: present
-
 - name: "[NVM] Creates NVM folder"
   file:
     path: "{{ ansible_env.HOME }}/.nvm"

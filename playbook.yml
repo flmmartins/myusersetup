@@ -1,7 +1,49 @@
-- hosts: 127.0.0.1
-  connection: local
-  roles:
-    - {role: base}
-    - {role: ssh, tags: ['ssh']}
-    - {role: git, tags: ['git']}
-    - {role: vim, tags: ['vim']}
+- hosts: localhost
+  tags:
+    - always
+  tasks:
+    - name: "Add target host to ansible memory"
+      add_host:
+        name: "{{ ip }}"
+        groups: myhost
+        ansible_user: "{{ user_name }}"
+    - name: "Install necessary galaxy roles"
+      local_action: command ansible-galaxy install -r requirements.yml
+
+#- hosts: 127.0.0.1
+#  connection: local
+- hosts: myhost
+  vars:
+    cli_packages: ['curl', 'wget', 'nvm', 'npm', 'terraform', 'awscli', 'jenv', 'packer', 'goss']
+    app_packages: ['google-chrome', 'firefox', 'franz', 'postgres', 'evernote', 'docker', 'spotify', 'dropbox', 'box']
+  tasks:
+    - import_role:
+        name: brew_installer
+      when: ansible_os_family == "Darwin"
+      tags: ['packages']
+
+    - import_role:
+        name: apt_installer
+      when: ansible_os_family == "Debian"
+      tags: ['packages']
+
+    - import_role:
+        name: yum_installer
+      when: ansible_os_family == "CentOS"
+      tags: ['packages']
+
+    - import_role:
+        name: shell
+      tags: ['shell']
+
+    - import_role:
+        name: ssh
+      tags: ['ssh']
+
+    - import_role:
+        name: git
+      tags: ['git']
+
+    - import_role:
+        name: vim
+      tags: ['vim']

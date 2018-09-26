@@ -1,3 +1,0 @@
-cli_packages: ['curl', 'wget', 'nvm', 'npm', 'terraform', 'awscli', 'jenv', 'packer', 'goss']
-app_packages: ['google-chrome', 'firefox', 'franz', 'postgres', 'evernote', 'docker', 'spotify', 'dropbox', 'box']
-mac_packages: ['iterm2', 'macdown', '1password', 'caffeine', 'alfred','remote-desktop-manager-free']
