@@ -1,0 +1,50 @@
+---
+- name: "[NVM] Creates NVM folder"
+  file:
+    path: "{{ ansible_env.HOME }}/.nvm"
+    state: directory
+    mode: 0744
+
+- name: "Install nvm if Mac"
+  homebrew: name=nvm state=present
+  when: ansible_os_family == "Darwin"
+
+- name: "Install nvm if Debian"
+  apt: name=nvm state=present
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: "Install nvm if Centos"
+  yum: name=nvm state=present
+  become: true
+  when: ansible_os_family == "CentOS"
+
+- name: "Creates zshrc if it doesnt exist"
+  file:
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    #modification_time: preserve
+    state: touch
+
+- name: "Add nvm directory in zshrc"
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    state: present
+    line: "export NVM_DIR=\"$HOME/.nvm\""
+
+- name: "Add line that runs nvm in zshrc"
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    state: present
+    line: ". \"/usr/local/opt/nvm/nvm.sh\""
+
+- name: "Install node version {{ node_version }}"
+  command: "zsh -lc 'nvm install {{ node_version }}'"
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/versions/node/{{ node_version }}"
+
+- name: "Checking node version"
+  command: "zsh -lc 'nvm alias default {{ node_version }} && nvm current'"
+  register: version_node
+
+- debug:
+    msg: "Current node version is {{ version_node.stdout }}"

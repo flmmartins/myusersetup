@@ -1,0 +1,12 @@
+---
+- import_role:
+    name: brew_installer
+  when: ansible_os_family == "Darwin"
+
+- import_role:
+    name: apt_installer
+  when: ansible_os_family == "Debian"
+
+- import_role:
+    name: yum_installer
+  when: ansible_os_family == "CentOS"

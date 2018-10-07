@@ -3,11 +3,8 @@
   set_fact:
     cask_packages: "{{ app_packages }} + {{ mac_packages }}"
 
-- name: "[NVM] Creates NVM folder"
-  file:
-    path: "{{ ansible_env.HOME }}/.nvm"
-    state: directory
-    mode: 0744
+- name: "Inject laptop with caffeine"
+  shell: "nohup caffeinate -t 1800 &"
 
 - name: "Install cli packages"
   homebrew:

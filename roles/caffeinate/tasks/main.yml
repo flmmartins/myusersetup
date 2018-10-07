@@ -1,3 +1,0 @@
----
-- name: "Inject laptop with caffeine"
-  shell: "nohup caffeinate -t 1800 &"

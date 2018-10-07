@@ -14,27 +14,24 @@
 #  connection: local
 - hosts: myhost
   vars:
-    cli_packages: ['curl', 'wget', 'nvm', 'npm', 'terraform', 'awscli', 'jenv', 'packer', 'goss']
+    cli_packages: ['curl', 'wget', 'terraform', 'awscli', 'jenv', 'packer', 'goss', 'virtualbox']
     app_packages: ['google-chrome', 'firefox', 'franz', 'postgres', 'evernote', 'docker', 'spotify', 'dropbox', 'box']
   tasks:
     - import_role:
-        name: brew_installer
-      when: ansible_os_family == "Darwin"
-      tags: ['packages']
-
-    - import_role:
-        name: apt_installer
-      when: ansible_os_family == "Debian"
-      tags: ['packages']
-
-    - import_role:
-        name: yum_installer
-      when: ansible_os_family == "CentOS"
+        name: base
       tags: ['packages']
 
     - import_role:
         name: shell
       tags: ['shell']
+
+    - import_role:
+        name: python
+      tags: ['python']
+
+    - import_role:
+        name: nodejs
+      tags: ['nodejs']
 
     - import_role:
         name: ssh
