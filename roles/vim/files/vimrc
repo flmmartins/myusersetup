@@ -64,6 +64,11 @@ endif
 let g:airline#extensions#bufferline#overwrite_variables = 0
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
+" denotes whether bufferline should automatically echo to the command bar
+let g:bufferline_echo = 0
+" the symbol to denote that a buffer is modified
+let g:bufferline_modified = '+'
+
 
 " ================= Mappings =========================
 
