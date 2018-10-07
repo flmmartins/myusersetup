@@ -1,0 +1,26 @@
+---
+- name: "Installs Jenv"
+  git:
+    repo: "https://github.com/gcuisinier/jenv.git"
+    dest: "{{ ansible_env.HOME }}/.jenv"
+
+- name: "Creates zshrc if it doesnt exist"
+  file:
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    #modification_time: preserve
+    state: touch
+
+- name: "Add line that runs jenv"
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    state: present
+    line: "eval \"$(jenv init -)\""
+
+- name: "Add jenv to path"
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    state: present
+    line: "export PATH=\"$HOME/.jenv/bin:$PATH\""
+
+- name: "Enable plugin that handles JAVA_HOME"
+  command: "zsh -lc 'jenv enable-plugin export'"

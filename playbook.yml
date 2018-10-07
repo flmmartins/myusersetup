@@ -14,8 +14,8 @@
 #  connection: local
 - hosts: myhost
   vars:
-    cli_packages: ['curl', 'wget', 'terraform', 'awscli', 'jenv', 'packer', 'goss', 'virtualbox']
-    app_packages: ['google-chrome', 'firefox', 'franz', 'postgres', 'evernote', 'docker', 'spotify', 'dropbox', 'box']
+    cli_packages: ['curl', 'wget', 'terraform', 'awscli', 'packer']
+    app_packages: ['google-chrome', 'firefox', 'franz', 'postgres', 'evernote', 'spotify', 'dropbox', 'box', 'virtualbox']
   tasks:
     - import_role:
         name: base
@@ -28,6 +28,16 @@
     - import_role:
         name: python
       tags: ['python']
+
+    - import_role:
+        name: java
+      tags: ['java']
+
+      # No suppor for Linux yet
+    - import_role:
+        name: docker-kubernetes
+      tags: ['docker']
+
 
     - import_role:
         name: nodejs
