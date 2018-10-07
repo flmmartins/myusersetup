@@ -29,7 +29,20 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 #Source AWS keys
-source $HOME/.aws
+export AWS_PROFILE=default
+
+aws_prod() {
+  export AWS_PROFILE=prod
+}
+
+login_ecr() {
+  eval $(aws ecr get-login --no-include-email --region eu-west-1)
+}
+
+minik() {
+  minikube docker-env
+  eval $(minikube docker-env)
+}
 
 # Set VIM as default editor
 export EDITOR=vim
@@ -38,6 +51,9 @@ export EDITOR=vim
 eval $(ssh-agent -s)
 ssh-add -t 28800 -K $HOME/.ssh/id_rsa
 
+#Locale usually required by python
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 #PATH
 PATH=${PATH}:/usr/local/bin
@@ -46,34 +62,6 @@ PATH=${PATH}:/usr/local/git/bin
 PATH=${PATH}:/usr/bin
 PATH=${PATH}:/usr/sbin
 PATH=${PATH}:/sbin
-#PATH=${PATH}:$HOME/.rvm/bin #Ruby Env
-#PATH=${PATH}:$HOME/packer
-#PATH=${PATH}:$HOME/.jenv/bin
-#PATH=${PATH}:/Applications/Postgres.app/Contents/Versions/9.3/bin
+PATH=${PATH}:$HOME/packer
 #Did explore like this so Brew can overwrite apple dev tool
 export PATH="/usr/local/bin:$PATH"
-
-#Node Env
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
-
-#Autoload .nvmrc file from directories
-autoload -U add-zsh-hook
-load-nvmrc() {
-  if [[ -f .nvmrc && -r .nvmrc ]]; then
-      nvm use
-    fi
-}
-add-zsh-hook chpwd load-nvmrc
-
-#Groovy
-#GROOVY_HOME=/usr/local/opt/groovy/libexec
-
-#Python Env
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)" #Enable virtualenv automatic activation
-
-#Java Env
-#To properly set JAVA_HOME run "jenv enable-plugin export" and restart
-#Dont install it with brew, use github otherwise this will not work
-#eval "$(jenv init -)"
