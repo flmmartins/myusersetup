@@ -7,8 +7,6 @@
         name: "{{ ip }}"
         groups: myhost
         ansible_user: "{{ user_name }}"
-    - name: "Install necessary galaxy roles"
-      local_action: command ansible-galaxy install -r requirements.yml
 
 #- hosts: 127.0.0.1
 #  connection: local

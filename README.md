@@ -1,5 +1,9 @@
 # Linux/Mac Provision
-Run
+Run te following
+
+```bash
+ansible-galaxy install -r requirements.yml
+```
 
 ```bash
 ansible-playbook -kK --ask-vault-pass playbook.yml
