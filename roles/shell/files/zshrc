@@ -44,6 +44,42 @@ minik() {
   eval $(minikube docker-env)
 }
 
+
+load_aws() {
+  if test $# -lt "2"; then
+    echo "PLEASE ADD YOUR MFA TOKEN when calling load_demo or load_prod. Ex: load_demo 86238621"
+    return 1
+  fi
+
+  unset AWS_SESSION_TOKEN
+  unset AWS_SECRET_ACCESS_KEY
+  unset AWS_ACCESS_KEY_ID
+
+  username=fernanda
+  account=$2
+
+  json=$(aws sts get-session-token --serial-number arn:aws:iam::$account:mfa/$username --token-code $1)
+  echo "AWS Response is $json"
+
+  export AWS_ACCESS_KEY_ID=$(echo $json | jq -r '.Credentials.AccessKeyId')
+  export AWS_SECRET_ACCESS_KEY=$(echo $json | jq -r '.Credentials.SecretAccessKey')
+  export AWS_SESSION_TOKEN=$(echo $json | jq -r '.Credentials.SessionToken')
+
+  echo "Your ID is $AWS_ACCESS_KEY_ID"
+  echo "Credentials loaded"
+}
+
+#load_private() {
+#  tfswitch 0.12.29
+#  tgswitch 0.23.33
+#  export AWS_PROFILE=private
+#  load_aws $1 MYACCOUNTNUMBER
+#  export KOPS_STATE_STORE=s3://kops-state
+#  export KOPS_CLUSTER_NAME=dev.k8s.local
+#  kubectl config use-context dev.k8s.local
+#  kops validate cluster
+#  kubectl cluster-info
+#}
 # Set VIM as default editor
 export EDITOR=vim
 
