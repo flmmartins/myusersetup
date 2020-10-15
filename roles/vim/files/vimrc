@@ -37,6 +37,14 @@ Plugin 'thoughtbot/vim-rspec' "Rspec Plugin
 Plugin 'sukima/xmledit' "Xml plugin
 Plugin 'klen/python-mode'
 Plugin 'martinda/Jenkinsfile-vim-syntax' "Jenkinsfile plugin
+Plugin 'stephpy/vim-yaml' "Yaml
+Plugin 'Yggdroot/indentLine' "Visual Vertical lines in identation
+Plugin 'hashivim/vim-terraform' "TerraformBasic. Requirement for Terraform Auto Compl
+Plugin 'juliosueiras/vim-terraform-completion'
+Plugin 'brooth/far.vim' "Search and replace in text and files
+
+" Plugin 'w0rp/ale' "Linter
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -65,10 +73,39 @@ let g:airline#extensions#bufferline#overwrite_variables = 0
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 " denotes whether bufferline should automatically echo to the command bar
-let g:bufferline_echo = 0
+let g:bufferline_echo = 1
 " the symbol to denote that a buffer is modified
 let g:bufferline_modified = '+'
+let g:bufferline_fname_mod = ':p:.'
+let g:bufferline_pathshorten = 0
 
+" ================= Syntastic Terraform Auto Compl =
+
+" Syntastic Config
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" (Optional)Remove Info(Preview) window
+set completeopt-=preview
+
+" (Optional)Hide Info(Preview) window after completions
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+" (Optional) Enable terraform plan to be include in filter
+let g:syntastic_terraform_tffilter_plan = 1
+
+" (Optional) Default: 0, enable(1)/disable(0) plugin's keymapping
+let g:terraform_completion_keys = 1
+
+" (Optional) Default: 1, enable(1)/disable(0) terraform module registry completion
+let g:terraform_registry_module_completion = 0
 
 " ================= Mappings =========================
 
@@ -125,6 +162,7 @@ let mapleader=","
 " =============== CtrlP  ==================
 
 set wildignore+=*.swp,*.pyc,*.class,.venv,node_modules
+let g:ctrlp_custom_ignore = '.venv\|node_modules\|.terragrunt-cache\|git'
 let g:ctrlp_show_hidden = 1
 
 " =============== NerdTree  ==================
@@ -161,6 +199,20 @@ silent !mkdir ~/.vim/backups > /dev/null 2>&1
 set undodir=~/.vim/backups
 set undofile
 
+" ================= Tab on equal sign ==============
+" Type ,a= to use Tab on equal for entire file
+let mapleader=','
+    if exists(":Tabularize")
+      nmap <Leader>a= :Tabularize /=<CR>
+      vmap <Leader>a= :Tabularize /=<CR>
+      nmap <Leader>a: :Tabularize /:\zs<CR>
+      vmap <Leader>a: :Tabularize /:\zs<CR>
+    endif
+
+" ================ Indentation ======================
+"Vertical identation config
+let g:indentLine_setColors = 0
+
 " ================ Indentation ======================
 
 set autoindent
@@ -168,6 +220,8 @@ set smartindent
 set smarttab
 set expandtab
 set shiftwidth=2
+
+" show existing tab with 2 spaces width
 set softtabstop=2
 set tabstop=2
 
@@ -208,3 +262,11 @@ set wildignore+=*.png,*.jpg,*.gif
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
+
+" ================ YAML ========================
+" Set tpl as yaml file
+au! BufNewFile,BufReadPost *.{yaml,yml,tpl} set filetype=yaml
+" Auto indent yamnl
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" Enable yamllint
+let g:syntastic_yaml_checkers = ['yamllint']
