@@ -8,12 +8,10 @@
 
 - name: "Install cli packages"
   homebrew:
-    name: "{{ item }}"
+    name: "{{ cli_packages }}"
     state: present
-  with_items: "{{ cli_packages }}"
 
 - name: "Install graphical packages"
   homebrew_cask:
-    name: "{{ item }}"
+    name: "{{ cask_packages }}"
     state: present
-  with_items: "{{ cask_packages }}"

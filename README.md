@@ -1,9 +1,23 @@
 # Linux/Mac Provision
-Run
+## Run
 
 ```bash
-ansible-playbook -kK --ask-vault-pass playbook.yml
+ansible-galaxy install -r requirements.yml
 ```
+
+### If you want to run remotely do:
+```bash
+ansible-playbook -kK -e ip=someip -e user_name=youruser --ask-vault-pass playbook.yml
+```
+
+### To run locally use:
+```bash
+ansible-playbook --connection=local --limit 127.0.0.1 -kK -e ip=127.0.0.1 -e user_name=youruser --ask-vault-pass playbook.yml
+```
+
+### Important warnings
+
+If you already installed manual brew cask packages you have to sadly remove then from the package list otherwise brew will throw an error
 
 Linux playbooks and conditionals are not tested yet
 

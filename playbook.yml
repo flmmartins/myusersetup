@@ -12,7 +12,7 @@
 
 #- hosts: 127.0.0.1
 #  connection: local
-- hosts: myhost
+- hosts: all
   vars:
     cli_packages: ['ansible', 'awscli', 'curl', 'packer', 'rbenv', 'terraform-docs', 'terraform_landscape', 'tfswitch', 'tgswitch', 'kops', 'kubernetes-cli', 'kubernetes-helm', 'go', 'goss', 'minikube', 'wget']
     app_packages: ['1password', 'atom', 'alfred', 'google-chrome', 'firefox', 'franz', 'postgres', 'evernote', 'spotify', 'dropbox', 'box', 'virtualbox', 'docker']
