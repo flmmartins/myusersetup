@@ -14,8 +14,8 @@
 #  connection: local
 - hosts: all
   vars:
-    cli_packages: ['ansible', 'awscli', 'curl', 'packer', 'rbenv', 'terraform-docs', 'terraform_landscape', 'tfswitch', 'tgswitch', 'kops', 'kubernetes-cli', 'kubernetes-helm', 'go', 'goss', 'minikube', 'wget']
-    app_packages: ['1password', 'atom', 'alfred', 'google-chrome', 'firefox', 'franz', 'postgres', 'evernote', 'spotify', 'dropbox', 'box', 'virtualbox', 'docker']
+    cli_packages: ['git', 'zsh', 'ansible', 'awscli', 'curl', 'packer', 'terraform-docs', 'terraform_landscape', 'warrensbox/tap/tfswitch', 'warrensbox/tap/tgswitch', 'kops', 'kubernetes-cli', 'kubernetes-helm', 'go', 'minikube', 'wget', 'openssl', 'ag']
+    app_packages: ['1password', 'visual-studio-code', 'firefox', 'evernote', 'spotify', 'dropbox', 'virtualbox', 'docker', 'slack', 'notion']
   tasks:
     - import_role:
         name: base
