@@ -1,2 +1,0 @@
-docker_mac_cli: ['kubernetes-cli', 'goss', 'kops']
-docker_mac_app: ['docker', 'minikube']

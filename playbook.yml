@@ -33,12 +33,6 @@
         name: java
       tags: ['java']
 
-      # No suppor for Linux yet
-    - import_role:
-        name: docker-kubernetes
-      tags: ['docker']
-
-
     - import_role:
         name: nodejs
       tags: ['nodejs']
