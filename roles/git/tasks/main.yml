@@ -14,7 +14,9 @@
   when: ansible_os_family == "Debian"
 
 - name: "Adds git config file"
-  file:
+  copy:
     src: gitconfig
     dest: "{{ ansible_env.HOME }}/.gitconfig"
-    state: file
+    mode: 0640
+    owner: "{{ user_name }}"
+

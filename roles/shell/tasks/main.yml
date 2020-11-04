@@ -4,8 +4,14 @@
   args:
     creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
 
-- name: "Adds zsh file"
-  file:
-    src: zshrc
-    dest: "{{ ansible_env.HOME }}/.zshrc"
-    state: file
+ - name: "Adds zsh file"
+   copy:
+      src: zshrc
+      dest: "{{ ansible_env.HOME }}/.zshrc"
+      mode: 0640
+      owner: "{{ user_name }}"
+
+ - name: Set zsh as default shell
+   user: 
+      name: "{{ user_name }}"
+      shell: /bin/zsh
