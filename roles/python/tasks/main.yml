@@ -13,17 +13,12 @@
   become: true
   when: ansible_os_family == "CentOS"
 
-- name: "Creates zshrc if it doesnt exist"
-  file:
-    dest: "{{ ansible_env.HOME }}/.zshrc"
-    #modification_time: preserve
-    state: touch
-
 - name: "Add line that runs pyenv"
   lineinfile:
     path: "{{ ansible_env.HOME }}/.zshrc"
     state: present
     line: "eval \"$(pyenv init -)\""
+    regexp: "^eval \"$(pyenv init -)\""
 
 - name: "Install python version"
   command: "zsh -lc 'pyenv install {{ item }}'"
