@@ -85,7 +85,7 @@ export EDITOR=vim
 
 # Load ssh passphrase
 eval $(ssh-agent -s)
-ssh-add -t 28800 -K $HOME/.ssh/id_rsa
+ssh-add -t 28800 -K $HOME/.ssh/id_ed25519
 
 #Locale usually required by python
 export LC_ALL=en_US.UTF-8

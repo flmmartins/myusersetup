@@ -3,19 +3,23 @@
    git:
      repo: https://github.com/robbyrussell/oh-my-zsh.git
      dest: "{{ ansible_env.HOME }}/.oh-my-zsh"
-     
- - name: remove standard zshrc
-   file:
-      path: "{{ ansible_env.HOME }}/.zshrc"
-      state: absent
 
- - name: "Adds zsh file"
+ - name: Adds zsh file
    copy:
       src: zshrc
       dest: "{{ ansible_env.HOME }}/.zshrc"
       mode: 0640
       owner: "{{ user_name }}"
 
+ - name: Add oh my zsh recommendations for zsh
+   file:
+    path: "{{ item }}"
+    owner: "{{ user_name }}"
+    mode: '0750'
+  loop:
+    - "/usr/local/share/zsh"
+    - "/usr/local/share/zsh/site-functions" 
+     
  - name: Set zsh as default shell
    user: 
       name: "{{ user_name }}"
