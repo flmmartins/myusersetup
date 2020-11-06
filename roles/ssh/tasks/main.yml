@@ -11,4 +11,4 @@
     dest: "{{ ansible_env.HOME }}/.ssh/config"
     mode: 0700
 
-- include: github.yml
+- include: create_ssh_key.yml
