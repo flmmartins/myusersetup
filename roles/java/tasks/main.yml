@@ -3,17 +3,3 @@
   git:
     repo: "https://github.com/gcuisinier/jenv.git"
     dest: "{{ ansible_env.HOME }}/.jenv"
-
-- name: "Add line that runs jenv"
-  lineinfile:
-    path: "{{ ansible_env.HOME }}/.zshrc"
-    state: present
-    line: "eval \"$(jenv init -)\""
-    regexp: "^eval \"$(jenv init -)\""
-
-- name: "Add jenv to path"
-  lineinfile:
-    path: "{{ ansible_env.HOME }}/.zshrc"
-    state: present
-    line: "export PATH=\"$HOME/.jenv/bin:$PATH\""
-    regexp: "^export PATH=\"$HOME/.jenv/bin:$PATH\""
