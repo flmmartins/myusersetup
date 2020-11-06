@@ -1,27 +1,26 @@
 ---
- - name: Clone oh-my-zsh repo
-   git:
-     repo: https://github.com/robbyrussell/oh-my-zsh.git
-     dest: "{{ ansible_env.HOME }}/.oh-my-zsh"
+- name: Clone oh-my-zsh repo
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh.git
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh"
 
- - name: Adds zsh file
-   copy:
-      src: zshrc
-      dest: "{{ ansible_env.HOME }}/.zshrc"
-      mode: 0640
-      owner: "{{ user_name }}"
+- name: Adds zsh file
+  copy:
+    src: zshrc
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    mode: 0640
+    owner: "{{ user_name }}"
 
- - name: "Add oh my zsh recommendations for zsh"
-   file:
-      path: "{{ item }}"
-      owner: "{{ user_name }}"
-      mode: '0750'
-   loop:
-    - "/usr/local/share/zsh"
-    - "/usr/local/share/zsh/site-functions" 
+- name: "Add oh my zsh recommendations for zsh"
+  file:
+    path: "{{ item }}"
+    owner: "{{ user_name }}"
+    mode: '0750'
+  loop:
+  - "/usr/local/share/zsh"
+  - "/usr/local/share/zsh/site-functions" 
 
- - name: "Set zsh as default shell"
-   user: 
-      name: "{{ user_name }}"
-      shell: /bin/zsh
-   become: true
+- name: "Set zsh as default shell"
+  user: 
+    name: "{{ user_name }}"
+    shell: /bin/zsh
