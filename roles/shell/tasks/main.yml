@@ -11,16 +11,17 @@
       mode: 0640
       owner: "{{ user_name }}"
 
- - name: Add oh my zsh recommendations for zsh
+ - name: "Add oh my zsh recommendations for zsh"
    file:
-    path: "{{ item }}"
-    owner: "{{ user_name }}"
-    mode: '0750'
-  loop:
+      path: "{{ item }}"
+      owner: "{{ user_name }}"
+      mode: '0750'
+   loop:
     - "/usr/local/share/zsh"
     - "/usr/local/share/zsh/site-functions" 
-     
- - name: Set zsh as default shell
+
+ - name: "Set zsh as default shell"
    user: 
       name: "{{ user_name }}"
       shell: /bin/zsh
+   become: true
