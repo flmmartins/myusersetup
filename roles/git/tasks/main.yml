@@ -1,18 +1,4 @@
 ---
-- name: "Install package in CentOS"
-  yum: state=present name=git
-  become: true
-  when: ansible_os_family == "CentOS"
-
-- name: "Install package in Mac"
-  homebrew: state=present name=git
-  when: ansible_os_family == "Darwin"
-
-- name: "Install package in Debian"
-  apt: state=present name=git
-  become: true
-  when: ansible_os_family == "Debian"
-
 - name: "Adds git config file"
   copy:
     src: gitconfig
