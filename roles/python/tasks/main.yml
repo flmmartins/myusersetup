@@ -1,51 +1,61 @@
 ---
 - name: "Install pyenv if Mac"
-  homebrew: name=pyenv state=present
+  homebrew: 
+    name: pyenv
+    state: present
   when: ansible_os_family == "Darwin"
 
 - name: "Install pyenv if Debian"
-  apt: name=pyenv state=present
+  apt:
+    name: pyenv state=present
   become: true
   when: ansible_os_family == "Debian"
 
 - name: "Install pyenv if Centos"
-  yum: name=pyenv state=present
+  yum: 
+    name: pyenv
+    state: present
   become: true
   when: ansible_os_family == "CentOS"
 
-- name: "Add line that runs pyenv"
-  lineinfile:
-    path: "{{ ansible_env.HOME }}/.zshrc"
-    state: present
-    line: "eval \"$(pyenv init -)\""
-    regexp: "^eval \"$(pyenv init -)\""
-
 - name: "Install python version"
-  command: "zsh -lc 'pyenv install {{ item }}'"
+  shell: "source {{ ansible_env.HOME }}/.zshrc && pyenv install {{ item }}"
   args:
+    executable: /bin/zsh
     creates: "{{ ansible_env.HOME }}/.pyenv/versions/{{ item }}"
   loop: "{{ python_versions }}"
 
 - name: "Set {{ python_default_version }} as python version"
-  command: "zsh -lc 'pyenv global {{python_default_version}}'"
+  shell: "source {{ ansible_env.HOME }}/.zshrc && pyenv global {{python_default_version}}"
+  args:
+    executable: /bin/zsh
 
 - name: "Checking python version"
-  command: "zsh -lc 'pyenv version'"
+  shell: "pyenv version"
+  args:
+    executable: /bin/zsh
   register: version_python
 
-- debug:
+- name: "Show python version"
+  debug:
     msg: "Current python version is {{ version_python.stdout }}"
 
 - name: "Install pipenv if Mac"
-  homebrew: name=pipenv state=present
+  homebrew: 
+    name: pipenv
+    state: present
   when: ansible_os_family == "Darwin"
 
 - name: "Install pipenv if Debian"
-  apt: name=pipenv state=present
+  apt:
+    name: pipenv
+    state: present
   become: true
   when: ansible_os_family == "Debian"
 
 - name: "Install pipenv if Centos"
-  yum: name=pipenv state=present
+  yum:
+    name: pipenv
+    state: present
   become: true
   when: ansible_os_family == "CentOS"
