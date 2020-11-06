@@ -1,1 +1,2 @@
-node_version: 'v10.10.0'
+node_version: 'v14.15.0'
+nvm_version: 'v0.36.0'
