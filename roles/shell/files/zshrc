@@ -24,9 +24,13 @@ DISABLE_AUTO_UPDATE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git jenv nvm pyenv)
+plugins=(git git-flow brew history jenv nvm node npm pyenv python docker docker-compose kubectl)
 
 source $ZSH/oh-my-zsh.sh
+
+alias k="kubectl"
+alias d="docker"
+alias g="git"
 
 #Source AWS keys
 export AWS_PROFILE=default

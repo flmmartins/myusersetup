@@ -14,37 +14,45 @@
 #  connection: local
 - hosts: all
   vars:
-    cli_packages: ['git', 'zsh', 'ansible', 'awscli', 'curl', 'packer', 'terraform-docs', 'terraform_landscape', 'warrensbox/tap/tfswitch', 'warrensbox/tap/tgswitch', 'kops', 'kubernetes-cli', 'kubernetes-helm', 'go', 'minikube', 'wget', 'openssl', 'ag', 'docker-compose']
+    cli_packages: ['git', 'zsh', 'ansible', 'awscli', 'curl', 'packer', 'terraform-docs', 'terraform_landscape', 'warrensbox/tap/tfswitch', 'warrensbox/tap/tgswitch', 'kops', 'kubernetes-cli', 'kubernetes-helm', 'go', 'minikube', 'wget', 'openssl', 'ag', 'docker-compose', 'kind']
     app_packages: ['1password', 'visual-studio-code', 'firefox', 'evernote', 'spotify', 'dropbox', 'virtualbox', 'docker', 'slack', 'notion']
   tasks:
-    - import_role:
+    - name: "Import Base"
+      import_role:
         name: base
       tags: ['packages']
 
-    - import_role:
+    - name: "Import Shell"
+      import_role:
         name: shell
       tags: ['shell']
 
-    - import_role:
+    - name: "Import Python"
+      import_role:
         name: python
       tags: ['python']
 
-    - import_role:
+    - name: "Import Java"
+      import_role:
         name: java
       tags: ['java']
 
-    - import_role:
+    - name: "Import NodeJS"
+      import_role:
         name: nodejs
       tags: ['nodejs']
 
-    - import_role:
+    - name: "Import SSH"
+      import_role:
         name: ssh
       tags: ['ssh']
 
-    - import_role:
+    - name: "Import Git"
+      import_role:
         name: git
       tags: ['git']
 
-    - import_role:
+    - name: "Import VIM"
+      import_role:
         name: vim
       tags: ['vim']
