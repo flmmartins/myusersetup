@@ -4,6 +4,13 @@
     repo: https://github.com/robbyrussell/oh-my-zsh.git
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh"
 
+- name: Add my ohmyshell theme
+  copy:
+    src: nanda.zsh-theme
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/themes/nanda.zsh-theme"
+    mode: 0640
+    owner: "{{ user_name }}"
+
 - name: Adds zsh file
   copy:
     src: zshrc
@@ -24,10 +31,3 @@
   user:
     name: "{{ user_name }}"
     shell: /bin/zsh
-
-- name: Add my ohmyshell theme
-  copy:
-    src: nanda.zsh-theme
-    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/themes/nanda.zsh-theme"
-    mode: 0640
-    owner: "{{ user_name }}"
