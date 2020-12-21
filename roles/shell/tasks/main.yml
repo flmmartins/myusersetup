@@ -18,9 +18,16 @@
     mode: '0750'
   loop:
   - "/usr/local/share/zsh"
-  - "/usr/local/share/zsh/site-functions" 
+  - "/usr/local/share/zsh/site-functions"
 
 - name: "Set zsh as default shell"
-  user: 
+  user:
     name: "{{ user_name }}"
     shell: /bin/zsh
+
+- name: Add my ohmyshell theme
+  copy:
+    src: nanda.zsh-theme
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/themes/nanda.zsh-theme"
+    mode: 0640
+    owner: "{{ user_name }}"
