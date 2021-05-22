@@ -62,9 +62,13 @@ ssh-keygen -o -a 200 -t ed25519 -f ~/.ssh/id_ed25519 -C "fernandamartins@worklap
 # Mac OS Manual configs
 * Go to Keyboard and set CAPS to CTRL
 * On trackpad enable all options
-* Configure Touch ID 
+* Configure Touch ID
 * Configure Touch ID for iTerm2 by Prefs -> Advanced -> Allow sessions to survive logging out and back in
 * Configure touch Bar to lock and dnd
+
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false         # For VS Code
+defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false # For VS Code Insider
+defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false    # For VS Codium
 
 # Visual Studio Extensions
 This will become a script:
@@ -77,7 +81,6 @@ code --install-extension vscoss.vscode-ansible && \
 code --install-extension  redhat.vscode-yaml && \
 code --install-extension hashicorp.terraform
 ```
-
 
 # Windows Provisioning (not finalized)
 The configure_cygwin script configures cygwin
