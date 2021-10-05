@@ -24,7 +24,7 @@ DISABLE_AUTO_UPDATE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-flow brew history jenv nvm node npm pyenv python docker docker-compose kubectl kube-ps1)
+plugins=(git git-flow brew history jenv nvm node npm pyenv python docker docker-compose kubectl kube-ps1 dotenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -74,8 +74,7 @@ load_aws() {
 }
 
 #load_private() {
-#  tfswitch 0.12.29
-#  tgswitch 0.23.33
+#  tfswitch ${MAINTF}
 #  export AWS_PROFILE=private
 #  load_aws $1 MYACCOUNTNUMBER
 #  export KOPS_STATE_STORE=s3://kops-state
@@ -94,6 +93,15 @@ ssh-add -t 28800 -K $HOME/.ssh/id_ed25519
 #Locale usually required by python
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export TF_CLI_ARGS_plan="-compact-warnings"
+export TF_CLI_ARGS_apply="-compact-warnings"
+export TF_CLI_ARGS_import="-compact-warnings"
+
+# Otherwise terraform complains
+export KUBE_CONFIG_PATH=~/.kube/config
+
+# Main tf version
+export MAINTF="1.0.2"
 
 #PATH
 PATH=${PATH}:/usr/local/bin
@@ -106,6 +114,5 @@ PATH=${PATH}:$HOME/packer
 #Did explore like this so Brew can overwrite apple dev tool
 export PATH="/usr/local/bin:$PATH"
 nvm use default
-tfswitch 0.14.2
-tgswitch 0.26.2
+tfswitch ${MAINTF}
 
