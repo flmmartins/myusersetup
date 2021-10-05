@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+cd terraform
+
+terraform fmt -recursive
+
+if [[ "$?" -gt 0 ]]; then
+  echo "Error"
+  exit 1
+fi

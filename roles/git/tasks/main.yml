@@ -6,3 +6,29 @@
     mode: 0640
     owner: "{{ user_name }}"
 
+- name: "Creates work folder"
+  file:
+    path: "{{ ansible_env.HOME }}/work"
+    state: directory
+    mode: 0640
+    owner: "{{ user_name }}"
+
+- name: "Creates personal folder"
+  file:
+    path: "{{ ansible_env.HOME }}/personal"
+    state: directory
+    mode: 0640
+    owner: "{{ user_name }}"
+
+- name: "Adds git config personal file"
+  copy:
+    src: gitconfig_personal
+    dest: "{{ ansible_env.HOME }}/personal/.gitconfig"
+    mode: 0640
+
+- name: "Add git hooks"
+  copy:
+    src: git-templates
+    dest: "{{ ansible_env.HOME }}/personal/.git-templates/"
+    mode: 0755
+    owner: "{{ user_name }}"
