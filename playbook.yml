@@ -10,12 +10,14 @@
     - name: "Install necessary galaxy roles"
       local_action: command ansible-galaxy install -r requirements.yml
 
+# Virtualbox not here because it requires manual interaction
+# Dropbox, evernote were removed due to user limit
 #- hosts: 127.0.0.1
 #  connection: local
 - hosts: all
   vars:
-    cli_packages: ['git', 'zsh', 'ansible', 'awscli', 'curl', 'packer', 'terraform-docs', 'terraform_landscape', 'warrensbox/tap/tfswitch', 'warrensbox/tap/tgswitch', 'kops', 'kubernetes-cli', 'kubernetes-helm', 'go', 'minikube', 'wget', 'openssl', 'ag', 'kind', 'k9s', 'kubectx', 'kube-ps1', 'azure-cli', 'jq']
-    app_packages: ['1password', 'visual-studio-code', 'firefox', 'evernote', 'spotify', 'dropbox', 'virtualbox', 'docker', 'slack', 'notion', 'mongodb-compass']
+    cli_packages: ['git', 'zsh', 'ansible', 'awscli', 'curl', 'packer', 'terraform-docs', 'terraform_landscape', 'warrensbox/tap/tfswitch', 'warrensbox/tap/tgswitch', 'kops', 'kubernetes-cli', 'kubernetes-helm', 'go', 'minikube', 'wget', 'openssl', 'ag', 'kind', 'k9s', 'kubectx', 'kube-ps1', 'azure-cli', 'jq', 'vagrant', 'aws-cli', 'aws-vault']
+    app_packages: ['1password', 'slack', 'spotify', 'visual-studio-code', 'firefox', 'docker', 'notion', 'mongodb-compass', 'homebrew/cask-versions/sequel-pro-nightly', 'iterm2']
   tasks:
     - name: "Import Base"
       import_role:
