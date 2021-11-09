@@ -70,17 +70,13 @@ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false        
 defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false # For VS Code Insider
 defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false    # For VS Codium
 
-# Visual Studio Extensions
-This will become a script:
+## Multi user setup for Brew
 
-```
-code --install-extension yzhang.markdown-all-in-one && \
-code --install-extension shd101wyy.markdown-preview-enhanced && \
-code --install-extension formulahendry.terminal && \
-code --install-extension vscoss.vscode-ansible && \
-code --install-extension  redhat.vscode-yaml && \
-code --install-extension hashicorp.terraform
-```
+1. Uninstall existing
+2. xcode-select --install
+3. cd $HOME && mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
+4. echo 'export PATH="$HOME/homebrew/bin:$PATH"' >> .zprofile
+5. Reopen terminal
 
 # Windows Provisioning (not finalized)
 The configure_cygwin script configures cygwin
