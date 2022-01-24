@@ -88,7 +88,14 @@ export EDITOR=vim
 
 # Load ssh passphrase
 eval $(ssh-agent -s)
-ssh-add -t 28800 -K $HOME/.ssh/id_ed25519
+if [ "$(uname -s)"=="Darwin" ]; then
+  ssh-add -t 28800 --apple-use-keychain $HOME/.ssh/id_ed25519
+else
+  ssh-add -t 28800 -K $HOME/.ssh/id_ed25519
+fi
+
+# Python - looks like pyenv plugin is not working very well so
+eval "$(pyenv init --path)"
 
 #Locale usually required by python
 export LC_ALL=en_US.UTF-8
@@ -109,7 +116,6 @@ eval "$(pyenv init -)"
 #PATH
 PATH=${PATH}:/usr/local/bin
 PATH=${PATH}:/usr/local/sbin
-PATH=${PATH}:/usr/local/git/bin
 PATH=${PATH}:/usr/bin
 PATH=${PATH}:/usr/sbin
 PATH=${PATH}:/sbin
