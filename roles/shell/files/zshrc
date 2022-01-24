@@ -110,9 +110,6 @@ export KUBE_CONFIG_PATH=~/.kube/config
 # Main tf version
 export MAINTF="1.0.2"
 
-#Pyenv plugin not working very well so you need to:
-eval "$(pyenv init -)"
-
 #PATH
 PATH=${PATH}:/usr/local/bin
 PATH=${PATH}:/usr/local/sbin
