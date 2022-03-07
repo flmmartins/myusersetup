@@ -16,7 +16,7 @@
 #  connection: local
 - hosts: all
   vars:
-    cli_packages: ['git', 'zsh', 'ansible', 'awscli', 'curl', 'packer', 'terraform-docs', 'terraform_landscape', 'warrensbox/tap/tfswitch', 'warrensbox/tap/tgswitch', 'kops', 'kubernetes-cli', 'kubernetes-helm', 'go', 'minikube', 'wget', 'openssl', 'ag', 'kind', 'k9s', 'kubectl', 'kubectx', 'kube-ps1', 'azure-cli', 'jq', 'vagrant', 'aws-cli', 'aws-vault']
+    cli_packages: ['git', 'zsh', 'ansible', 'awscli', 'curl', 'packer', 'terraform-docs', 'terraform_landscape', 'warrensbox/tap/tfswitch', 'warrensbox/tap/tgswitch', 'kops', 'kubernetes-cli', 'kubernetes-helm', 'go', 'minikube', 'wget', 'openssl', 'ag', 'kind', 'k9s', 'kubectl', 'kubectx', 'kube-ps1', 'azure-cli', 'jq', 'vagrant', 'aws-cli', 'aws-vault', 'colima']
     app_packages: ['1password', 'slack', 'spotify', 'visual-studio-code', 'firefox', 'docker', 'notion', 'mongodb-compass', 'homebrew/cask-versions/sequel-pro-nightly', 'iterm2']
   tasks:
     - name: "Import Base"
