@@ -31,3 +31,10 @@
   user:
     name: "{{ user_name }}"
     shell: /bin/zsh
+
+- name: "Adds yamllint config"
+  copy:
+    src: yamllint-config
+    dest: "{{ ansible_env.HOME }}/.config/yamllint/config"
+    mode: 0644
+    owner: "{{ user_name }}"

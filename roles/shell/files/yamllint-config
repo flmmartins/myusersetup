@@ -1,0 +1,4 @@
+rules:
+  document-end: disable
+  document-start: disable
+  indentation: disable
