@@ -29,10 +29,10 @@
         name: shell
       tags: ['shell']
 
-    - name: "Import Python"
-      import_role:
-        name: python
-      tags: ['python']
+#    - name: "Install pyenv"
+#      import_role:
+#        name: pyenv
+#      tags: ['pyenv']
 
     - name: "Import Java"
       import_role:
