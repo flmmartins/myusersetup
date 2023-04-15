@@ -18,40 +18,35 @@
   vars:
     cli_packages: ['git',
                    'zsh',
-                   'python',
                    'ansible',
-                   'awscli',
+                   'azure-cli',
+                   'awscli','aws-vault',
                    'curl',
-                   'wget',
                    'packer',
+                   'terraform-docs', 'terraform_landscape', 'warrensbox/tap/tfswitch',
+                   'kops', 'kubernetes-cli', 'kubernetes-helm', 'kubectl', 'k9s',
+                   'go',
+                   'minikube', 'kind',
+                   'wget',
                    'openssl',
                    'ag',
-                   'jq',
-                   'yq',
+                   'kubectx', 'kube-ps1',
+                   'jq', 'yq',
+                   'podman', 'colima']
+    app_packages: ['1password',
+                   'caffeine',
+                   'remote-desktop-manager-free',
+                   'macdown',
+                   'slack',
+                   'spotify',
+                   'visual-studio-code',
+                   'firefox',
+                   #'docker',
+                   'podman-desktop',
+                   'notion',
                    'vagrant',
-                   'podman', # Docker replacement
-                   # Terraform
-                   'terraform-docs',
-                   'terraform_landscape',
-                   'warrensbox/tap/tfswitch',
-                   'warrensbox/tap/tgswitch',
-                   # Kubernetes
-                   'kops',
-                   'kubernetes-cli',
-                   'kubernetes-helm',
-                   'go',
-                   'minikube',
-                   'kind',
-                   'k9s',
-                   'kubectl',
-                   'kubectx',
-                   'kube-ps1',
-                   # Cloud
-                   'azure-cli',
-                   'aws-cli',
-                   'aws-vault',
-    ]
-    app_packages: ['1password', 'slack', 'spotify', 'visual-studio-code', 'firefox', 'docker', 'notion', 'mongodb-compass', 'homebrew/cask-versions/sequel-pro-nightly', 'iterm2']
+                   'mongodb-compass', 'homebrew/cask-versions/sequel-pro-nightly',
+                   'iterm2']
   tasks:
     - name: "Import Base"
       import_role:
@@ -68,15 +63,15 @@
 #        name: pyenv
 #      tags: ['pyenv']
 
-    - name: "Import Java"
-      import_role:
-        name: java
-      tags: ['java']
+#    - name: "Import Java"
+#      import_role:
+#        name: java
+#      tags: ['java']
 
-    - name: "Import NodeJS"
-      import_role:
-        name: nodejs
-      tags: ['nodejs']
+#    - name: "Import NodeJS"
+#      import_role:
+#        name: nodejs
+#      tags: ['nodejs']
 
     - name: "Import SSH"
       import_role:
