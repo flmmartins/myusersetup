@@ -1,25 +1,39 @@
 ---
 - name: Clone oh-my-zsh repo
-  git:
+  ansible.builtin.git:
     repo: https://github.com/robbyrussell/oh-my-zsh.git
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh"
 
 - name: Add my ohmyshell theme
-  copy:
+  ansible.builtin.copy:
     src: nanda.zsh-theme
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/themes/nanda.zsh-theme"
     mode: 0640
     owner: "{{ user_name }}"
 
+- name: Install powerlevel10k theme
+  ansible.builtin.git:
+    repo: https://github.com/romkatv/powerlevel10k.git
+    depth: 1
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/themes/powerlevel10k"
+
+
 - name: Adds zsh file
-  copy:
+  ansible.builtin.copy:
     src: zshrc
     dest: "{{ ansible_env.HOME }}/.zshrc"
     mode: 0640
     owner: "{{ user_name }}"
 
+- name: Adds p10k file
+  ansible.builtin.copy:
+    src: p10k
+    dest: "{{ ansible_env.HOME }}/.p10k.zsh"
+    mode: 0640
+    owner: "{{ user_name }}"
+
 - name: "Add oh my zsh recommendations for zsh"
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     owner: "{{ user_name }}"
     mode: '0750'
@@ -28,12 +42,18 @@
   - "/usr/local/share/zsh/site-functions"
 
 - name: "Set zsh as default shell"
-  user:
+  ansible.builtin.user:
     name: "{{ user_name }}"
     shell: /bin/zsh
 
+- name: "Creates config folder"
+  ansible.builtin.file: 
+    path: "{{ ansible_env.HOME }}/.config/yamllint"
+    state: directory
+    mode: 0744
+
 - name: "Adds yamllint config"
-  copy:
+  ansible.builtin.copy:
     src: yamllint-config
     dest: "{{ ansible_env.HOME }}/.config/yamllint/config"
     mode: 0644
