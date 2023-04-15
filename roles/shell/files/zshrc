@@ -32,62 +32,11 @@ alias k="kubectl"
 alias d="docker"
 alias g="git"
 
-#Source AWS keys
-export AWS_PROFILE=default
-
-aws_prod() {
-  export AWS_PROFILE=prod
-}
-
-login_ecr() {
-  eval $(aws ecr get-login --no-include-email --region eu-west-1)
-}
-
-minik() {
-  minikube docker-env
-  eval $(minikube docker-env)
-}
-
-
-load_aws() {
-  if test $# -lt "2"; then
-    echo "PLEASE ADD YOUR MFA TOKEN when calling load_demo or load_prod. Ex: load_demo 86238621"
-    return 1
-  fi
-
-  unset AWS_SESSION_TOKEN
-  unset AWS_SECRET_ACCESS_KEY
-  unset AWS_ACCESS_KEY_ID
-
-  username=fernanda
-  account=$2
-
-  json=$(aws sts get-session-token --serial-number arn:aws:iam::$account:mfa/$username --token-code $1)
-  echo "AWS Response is $json"
-
-  export AWS_ACCESS_KEY_ID=$(echo $json | jq -r '.Credentials.AccessKeyId')
-  export AWS_SECRET_ACCESS_KEY=$(echo $json | jq -r '.Credentials.SecretAccessKey')
-  export AWS_SESSION_TOKEN=$(echo $json | jq -r '.Credentials.SessionToken')
-
-  echo "Your ID is $AWS_ACCESS_KEY_ID"
-  echo "Credentials loaded"
-}
-
-#load_private() {
-#  tfswitch ${MAINTF}
-#  export AWS_PROFILE=private
-#  load_aws $1 MYACCOUNTNUMBER
-#  export KOPS_STATE_STORE=s3://kops-state
-#  export KOPS_CLUSTER_NAME=dev.k8s.local
-#  kubectl config use-context dev.k8s.local
-#  kops validate cluster
-#  kubectl cluster-info
-#}
 # Set VIM as default editor
 export EDITOR=vim
 
 # Python - looks like pyenv plugin is not working very well so
-eval "$(pyenv init --path)"
+#eval "$(pyenv init --path)"
 
 #Locale usually required by python
 export LC_ALL=en_US.UTF-8
@@ -99,9 +48,6 @@ export TF_CLI_ARGS_import="-compact-warnings"
 # Otherwise terraform complains
 export KUBE_CONFIG_PATH=~/.kube/config
 
-# Main tf version
-export MAINTF="1.0.2"
-
 #PATH
 PATH=${PATH}:/usr/local/bin
 PATH=${PATH}:/usr/local/sbin
@@ -111,6 +57,3 @@ PATH=${PATH}:/sbin
 PATH=${PATH}:$HOME/packer
 #Did explore like this so Brew can overwrite apple dev tool
 export PATH="/usr/local/bin:$PATH"
-nvm use default
-tfswitch ${MAINTF}
-
