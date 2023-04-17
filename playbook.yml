@@ -19,7 +19,7 @@
     cli_packages: ['git',
                    'zsh',
                    'ansible',
-                   'azure-cli',
+                   'azure-cli','azcopy',
                    'awscli','aws-vault',
                    'curl',
                    'packer',
@@ -32,6 +32,7 @@
                    'ag',
                    'kubectx', 'kube-ps1',
                    'jq', 'yq',
+                   'yamllint',
                    'podman', 'colima']
     app_packages: ['1password',
                    'caffeine',
