@@ -33,7 +33,8 @@
                    'kubectx', 'kube-ps1',
                    'jq', 'yq',
                    'yamllint',
-                   'podman', 'colima']
+                   #'podman', 'colima'
+                  ]
     app_packages: ['1password',
                    'caffeine',
                    'remote-desktop-manager-free',
@@ -42,8 +43,8 @@
                    'spotify',
                    'visual-studio-code',
                    'firefox',
-                   #'docker',
-                   'podman-desktop',
+                   'docker',
+                   #'podman-desktop',
                    'notion',
                    'vagrant',
                    'mongodb-compass', 'homebrew/cask-versions/sequel-pro-nightly',
@@ -58,6 +59,21 @@
       import_role:
         name: shell
       tags: ['shell']
+
+    - name: "Import SSH"
+      import_role:
+        name: ssh
+      tags: ['ssh']
+
+    - name: "Import Git"
+      import_role:
+        name: git
+      tags: ['git']
+
+    - name: "Import VIM"
+      import_role:
+        name: vim
+      tags: ['vim']
 
 #    - name: "Install pyenv"
 #      import_role:
@@ -74,17 +90,4 @@
 #        name: nodejs
 #      tags: ['nodejs']
 
-    - name: "Import SSH"
-      import_role:
-        name: ssh
-      tags: ['ssh']
 
-    - name: "Import Git"
-      import_role:
-        name: git
-      tags: ['git']
-
-    - name: "Import VIM"
-      import_role:
-        name: vim
-      tags: ['vim']
