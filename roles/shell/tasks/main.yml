@@ -9,7 +9,7 @@
     src: nanda.zsh-theme
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/themes/nanda.zsh-theme"
     mode: 0640
-    owner: "{{ user_name }}"
+    owner: "{{ lookup('env', 'USER') }}"
 
 - name: Install powerlevel10k theme
   ansible.builtin.git:
@@ -23,27 +23,18 @@
     src: zshrc
     dest: "{{ ansible_env.HOME }}/.zshrc"
     mode: 0640
-    owner: "{{ user_name }}"
+    owner: "{{ lookup('env', 'USER') }}"
 
 - name: Adds p10k file
   ansible.builtin.copy:
     src: p10k
     dest: "{{ ansible_env.HOME }}/.p10k.zsh"
     mode: 0640
-    owner: "{{ user_name }}"
-
-- name: "Add oh my zsh recommendations for zsh"
-  ansible.builtin.file:
-    path: "{{ item }}"
-    owner: "{{ user_name }}"
-    mode: '0750'
-  loop:
-  - "/usr/local/share/zsh"
-  - "/usr/local/share/zsh/site-functions"
+    owner: "{{ lookup('env', 'USER') }}"
 
 - name: "Set zsh as default shell"
   ansible.builtin.user:
-    name: "{{ user_name }}"
+    name: "{{ lookup('env', 'USER') }}"
     shell: /bin/zsh
 
 - name: "Creates config folder"
@@ -57,4 +48,4 @@
     src: yamllint-config
     dest: "{{ ansible_env.HOME }}/.config/yamllint/config"
     mode: 0644
-    owner: "{{ user_name }}"
+    owner: "{{ lookup('env', 'USER') }}"

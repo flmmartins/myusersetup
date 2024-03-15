@@ -1,2 +1,2 @@
-python_versions: ['3.9.6']
-python_default_version: '3.9.6'
+python_versions: ['3.12.2']
+python_default_version: '3.12.2'

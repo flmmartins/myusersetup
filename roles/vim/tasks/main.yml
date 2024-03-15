@@ -22,7 +22,7 @@
     src: vimrc
     dest: "{{ ansible_env.HOME }}/.vimrc"
     mode: 0640
-    owner: "{{ user_name }}"
+    owner: "{{ lookup('env', 'USER') }}"
 
 - name: "Install plugins from vimrc in non-interactive mode"
   shell: "echo | echo | vim +PluginInstall +qall &>/dev/null"
