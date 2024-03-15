@@ -1,5 +1,9 @@
 # Linux/Mac Provision
 
+### Important warnings
+
+* Linux playbooks and conditionals are not tested yet
+
 ## Requirements
 
 Install ansible and
@@ -10,28 +14,25 @@ ansible-galaxy install -r requirements.yml
 
 ## Run
 
-### If you want to run remotely do:
+### Run in locally in your machine
 ```bash
-ansible-playbook -kK -e ip=someip -e user_name=youruser --ask-vault-pass playbook.yml
+ansible-playbook -kK --ask-vault-pass playbook.yml
 ```
 
-### To run locally use:
+### To run remotely use:
 ```bash
-ansible-playbook --connection=local --limit 127.0.0.1 -kK -e ip=127.0.0.1 -e user_name=youruser --ask-vault-pass playbook.yml
+ansible-playbook --connection=ssh -i <IP_ADDRESS> -kK --ask-vault-pass playbook.yml
 ```
 
 ### Running specific tags
-Select the tags according to playbook and use
+
+Select the tags according to playbook and use `-t "tag1,tag2"`
+
+To list tags:
 
 ```
---tags "tag1,tag2"
+ansible-playbook --list-tags playbook.yml
 ```
-
-### Important warnings
-
-* If you already installed manual brew cask packages you have to sadly remove then from the package list otherwise brew will throw an error
-* Linux playbooks and conditionals are not tested yet
-
 
 
 # SSH Command Tips
@@ -64,7 +65,6 @@ ssh-keygen -o -a 200 -t ed25519 -f ~/.ssh/id_ed25519 -C "fernandamartins@worklap
 * On trackpad enable all options
 * Configure Touch ID
 * Configure Touch ID for iTerm2 by Prefs -> Advanced -> Allow sessions to survive logging out and back in
-* Configure touch Bar to lock and dnd
 
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false         # For VS Code
 defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false # For VS Code Insider
