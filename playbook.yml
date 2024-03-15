@@ -1,54 +1,56 @@
-- hosts: localhost
-  tags:
-    - always
-  tasks:
-    - name: "Add target host to ansible memory"
-      add_host:
-        name: "{{ ip }}"
-        groups: myhost
-        ansible_user: "{{ user_name }}"
-    - name: "Install necessary galaxy roles"
-      local_action: command ansible-galaxy install -r requirements.yml
-
 # Virtualbox not here because it requires manual interaction
 # Dropbox, evernote were removed due to user limit
-#- hosts: 127.0.0.1
-#  connection: local
-- hosts: all
+- hosts: 127.0.0.1
+  connection: local
   vars:
-    cli_packages: ['git',
-                   'zsh',
-                   'ansible',
-                   'azure-cli','azcopy',
-                   'awscli','aws-vault',
-                   'curl',
-                   'packer',
-                   'terraform-docs', 'terraform_landscape', 'warrensbox/tap/tfswitch',
-                   'kops', 'kubernetes-cli', 'kubernetes-helm', 'kubectl', 'k9s',
-                   'go',
-                   'minikube', 'kind',
-                   'wget',
-                   'openssl',
-                   'ag',
-                   'kubectx', 'kube-ps1',
-                   'jq', 'yq',
-                   'yamllint',
-                   #'podman', 'colima'
-                  ]
-    app_packages: ['1password',
-                   'caffeine',
-                   'remote-desktop-manager-free',
-                   'macdown',
-                   'slack',
-                   'spotify',
-                   'visual-studio-code',
-                   'firefox',
-                   'docker',
-                   #'podman-desktop',
-                   'notion',
-                   'vagrant',
-                   'mongodb-compass', 'homebrew/cask-versions/sequel-pro-nightly',
-                   'iterm2']
+    cli_apps: 
+    - curl
+    - git
+    - zsh
+    - openssl
+    - azure-cli
+    - azcopy
+    - awscli
+    - aws-vault
+    - packer
+    - terraform-docs
+    - terraform_landscape
+    - tfenv
+    - kops
+    - kubernetes-cli
+    - kubernetes-helm
+    - kubectl
+    - k9s
+    - kubectx
+    - kube-ps1
+    - minikube
+    - kind
+    - go
+    - wget
+    - ag
+    - jq
+    - yq
+    - yamllint
+    - colima
+ 
+    apps:
+    - google-chrome
+    - brave-browser
+    - 1password
+    - caffeine
+    - microsoft-remote-desktop
+    - macdown
+    - slack
+    - spotify
+    - visual-studio-code
+    - firefox
+    - docker
+    - notion
+    - vagrant
+    - mongodb-compass
+    - dbeaver-community
+    - iterm2
+
   tasks:
     - name: "Import Base"
       import_role:

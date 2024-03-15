@@ -1,7 +1,7 @@
 ---
 - name: "Set fact with package list"
   set_fact:
-    packages: "{{ app_packages }} + {{ cli_packages }}"
+    packages: "{{ apps }} + {{ cli_apps }}"
 
 - name: "Update Cache"
   yum: update_cache=yes
