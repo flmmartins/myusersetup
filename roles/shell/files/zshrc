@@ -42,18 +42,22 @@ alias g="git"
 # Set VIM as default editor
 export EDITOR=vim
 
-# Python - looks like pyenv plugin is not working very well so
-#eval "$(pyenv init --path)"
-
-#Locale usually required by python
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+# Terraform
 export TF_CLI_ARGS_plan="-compact-warnings"
 export TF_CLI_ARGS_apply="-compact-warnings"
 export TF_CLI_ARGS_import="-compact-warnings"
 
 # Otherwise terraform complains
 export KUBE_CONFIG_PATH=~/.kube/config
+
+# Python
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+#Locale usually required by python
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 #PATH
 PATH=${PATH}:/usr/local/bin

@@ -5,7 +5,7 @@
   when: ansible_os_family == "CentOS"
 
 - name: "Install package in Mac"
-  homebrew: state=present name=vim
+  community.general.homebrew: state=present name=vim
   when: ansible_os_family == "Darwin"
 
 - name: "Install package in Debian"

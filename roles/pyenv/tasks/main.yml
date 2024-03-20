@@ -1,19 +1,20 @@
 ---
 - name: "Install pyenv if Mac"
-  homebrew: 
-    name: pyenv
+  community.general.homebrew: 
+    name: "{{ packages }}"
     state: present
   when: ansible_os_family == "Darwin"
 
 - name: "Install pyenv if Debian"
   apt:
-    name: pyenv state=present
+    name: "{{ packages }}" 
+    state: present
   become: true
   when: ansible_os_family == "Debian"
 
 - name: "Install pyenv if Centos"
   yum: 
-    name: pyenv
+    name: "{{ packages }}"
     state: present
   become: true
   when: ansible_os_family == "CentOS"
@@ -39,23 +40,3 @@
 - name: "Show python version"
   debug:
     msg: "Current python version is {{ version_python.stdout }}"
-
-- name: "Install pipenv if Mac"
-  homebrew: 
-    name: pipenv
-    state: present
-  when: ansible_os_family == "Darwin"
-
-- name: "Install pipenv if Debian"
-  apt:
-    name: pipenv
-    state: present
-  become: true
-  when: ansible_os_family == "Debian"
-
-- name: "Install pipenv if Centos"
-  yum:
-    name: pipenv
-    state: present
-  become: true
-  when: ansible_os_family == "CentOS"
