@@ -55,9 +55,13 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
+
 #Locale usually required by python
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+# Colima with docker
+# export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
 
 #PATH
 PATH=${PATH}:/usr/local/bin

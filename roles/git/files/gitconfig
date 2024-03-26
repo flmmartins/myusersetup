@@ -1,7 +1,7 @@
 [user]
   name = Fernanda Martins
-[includeIf "gitdir:~/work/repos/"]
-  path = ~/work/repos/.gitconfig
+[includeIf "gitdir:~/work/"]
+  path = ~/work/.gitconfig
 [includeIf "gitdir:~/personal/"]
   path = ~/personal/.gitconfig
 [color]
@@ -20,6 +20,8 @@
   br = branch
   l = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%C(bold blue) %s %Cgreen(%cr) %C(bold blue)<%an> %Creset' --abbrev-commit
   p = git pull --rebase
+  amend = commit -a --amend --no-edit --date=now --reset-author
+  psf   = push -f
 [color "decorate"]
   HEAD = green
   branch = cyan
@@ -29,4 +31,5 @@
 [credential "https://github.com"]
   helper = osxkeychain
 [init]
-  templatedir = ~/.git-templates
+  defaultBranch = main
+#  templatedir = ~/.git-templates
