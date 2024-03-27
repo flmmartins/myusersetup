@@ -4,6 +4,14 @@
 
 * Linux playbooks and conditionals are not tested yet
 
+#### Mac M1
+
+**Support AMD64 docker images instead of ARM**
+
+Colima support to AMD64 images only if started with : `colima start --arch aarch64 --vm-type=vz --vz-rosetta --runtime docker`
+
+Minikube will not run because doesn't support M1 so force to use colima or docker desktop with --driver docker
+
 ## Requirements
 
 Install ansible and
