@@ -1,3 +1,7 @@
+# Install ansible
+
+Install ansible with pip
+
 # Linux/Mac Provision
 Run te following
 
@@ -6,7 +10,7 @@ ansible-galaxy install -r requirements.yml
 ```
 
 ```bash
-ansible-playbook -kK --ask-vault-pass playbook.yml
+ansible-playbook -kK --ask-vault-pass playbook.yml --extra-vars "ip=<ADD-MACHINE-IP> user_name=ADD-MACHINE-USERNAME"
 ```
 
 Linux playbooks and conditionals are not tested yet
@@ -31,19 +35,3 @@ ssh-add -t *h <key_path>
 ssh-add -L
 ```
 
-
-# Windows Provisioning (not finalized)
-The configure_cygwin script configures cygwin
-
-## Requirements to run
-On cygwin setup you need to install WGET
-
-## Softwares for Windows to be used along with cygwin
-TODO: Put them in Chocolatey automation
-- VirtualBox
-- VirtualBox Extension Pack
-- Vagrant
-- Notepadd++
-- SupperPutty
-- WinSCP
-- GitHub or GitSCM

@@ -1,0 +1,4 @@
+- hosts: mymachines
+  tasks:
+    - name: Show system information
+      debug: msg="{{ ansible_distribution }}"

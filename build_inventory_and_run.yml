@@ -1,0 +1,14 @@
+- hosts: localhost
+  vars:
+    ip: 127.0.0.1
+    user_name
+  tags:
+    - always
+  tasks:
+    - name: "Add target host to ansible memory"
+      add_host:
+        name: "{{ ip }}"
+        groups: myhost
+        ansible_user: "{{ user_name }}"
+
+    - include_playbook: playbook.yml

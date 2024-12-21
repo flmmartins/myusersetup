@@ -1,5 +1,0 @@
-# For windows the config is %APPDATA%/packer.config
-# The location of the core configuration file can be modified by setting the PACKER_CONFIG environmental variable to be the path to another file
-
-# Resolution for packer typing issue due to CPU
-PACKER_KEY_INTERVAL=10ms
