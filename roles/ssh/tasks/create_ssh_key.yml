@@ -1,6 +1,6 @@
 ---
 - name: "Creates SSH key"
-  shell: "ssh-keygen -t rsa -b 4096 -C '{{ ansible_hostname }}' -f {{ github_key_path }} -N {{ passphrase }}"
+  shell: "ssh-keygen -o -a 200 -t ed25519 -C '{{ ansible_hostname }}' -f {{ github_key_path }} -N {{ passphrase }}"
   args:
     creates: "{{ github_key_path }}"
 

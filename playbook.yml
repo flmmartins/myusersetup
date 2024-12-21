@@ -1,42 +1,95 @@
-- hosts: myhost
+# Virtualbox not here because it requires manual interaction
+# Dropbox, evernote were removed due to user limit
+- hosts: 127.0.0.1
+  connection: local
   vars:
-    cli_packages: ['curl', 'wget', 'terraform', 'awscli', 'packer']
-    app_packages: ['google-chrome', 'firefox', 'franz', 'postgres', 'evernote', 'spotify', 'dropbox', 'box', 'virtualbox']
+    cli_apps: 
+    - curl
+    - git
+    - zsh
+    - openssl
+    - azure-cli
+    - azcopy
+    - awscli
+    - aws-vault
+    - packer
+    - terraform-docs
+    - terraform_landscape
+    - tfenv
+    - kops
+    - kubernetes-cli
+    - kubernetes-helm
+    - kubectl
+    - k9s
+    - kubectx
+    - kube-ps1
+    - minikube
+    - kind
+    - go
+    - wget
+    - ag
+    - jq
+    - yq
+    - yamllint
+    - colima
+ 
+    apps:
+    - google-chrome
+    - brave-browser
+    - 1password
+    - caffeine
+    - microsoft-remote-desktop
+    - macdown
+    - slack
+    - spotify
+    - visual-studio-code
+    - firefox
+    - docker
+    - notion
+    - vagrant
+    - mongodb-compass
+    - dbeaver-community
+    - iterm2
+
   tasks:
-    - import_role:
+    - name: "Import Base"
+      import_role:
         name: base
       tags: ['packages']
 
-    - import_role:
+    - name: "Import Shell"
+      import_role:
         name: shell
       tags: ['shell']
 
-    - import_role:
-        name: python
-      tags: ['python']
-
-    - import_role:
-        name: java
-      tags: ['java']
-
-      # No suppor for Linux yet
-    - import_role:
-        name: docker-kubernetes
-      tags: ['docker']
-
-
-    - import_role:
-        name: nodejs
-      tags: ['nodejs']
-
-    - import_role:
+    - name: "Import SSH"
+      import_role:
         name: ssh
       tags: ['ssh']
 
-    - import_role:
+    - name: "Import Git"
+      import_role:
         name: git
       tags: ['git']
 
-    - import_role:
+    - name: "Import VIM"
+      import_role:
         name: vim
       tags: ['vim']
+
+#    - name: "Install pyenv"
+#      import_role:
+#        name: pyenv
+#      tags: ['pyenv']
+
+#    - name: "Import Java"
+#      import_role:
+#        name: java
+#      tags: ['java']
+
+#    - name: "Import NodeJS"
+#      import_role:
+#        name: nodejs
+#      tags: ['nodejs']
+
+

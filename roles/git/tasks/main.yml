@@ -1,20 +1,35 @@
 ---
-- name: "Install package in CentOS"
-  yum: state=present name=git
-  become: true
-  when: ansible_os_family == "CentOS"
-
-- name: "Install package in Mac"
-  homebrew: state=present name=git
-  when: ansible_os_family == "Darwin"
-
-- name: "Install package in Debian"
-  apt: state=present name=git
-  become: true
-  when: ansible_os_family == "Debian"
-
 - name: "Adds git config file"
-  file:
+  copy:
     src: gitconfig
     dest: "{{ ansible_env.HOME }}/.gitconfig"
-    state: file
+    mode: 0640
+    owner: "{{ lookup('env', 'USER') }}"
+
+- name: "Creates work folder"
+  file:
+    path: "{{ ansible_env.HOME }}/work"
+    state: directory
+    mode: 0740
+    owner: "{{ lookup('env', 'USER') }}"
+
+- name: "Creates personal folder"
+  file:
+    path: "{{ ansible_env.HOME }}/personal"
+    state: directory
+    mode: 0740
+    owner: "{{ lookup('env', 'USER') }}"
+
+- name: "Adds git config personal file"
+  copy:
+    src: gitconfig_personal
+    dest: "{{ ansible_env.HOME }}/personal/.gitconfig"
+    mode: 0640
+    owner: "{{ lookup('env', 'USER') }}"
+
+- name: "Add git hooks"
+  copy:
+    src: git-templates
+    dest: "{{ ansible_env.HOME }}/personal/.git-templates/"
+    mode: 0755
+    owner: "{{ lookup('env', 'USER') }}"

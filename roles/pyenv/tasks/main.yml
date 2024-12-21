@@ -1,0 +1,42 @@
+---
+- name: "Install pyenv if Mac"
+  community.general.homebrew: 
+    name: "{{ packages }}"
+    state: present
+  when: ansible_os_family == "Darwin"
+
+- name: "Install pyenv if Debian"
+  apt:
+    name: "{{ packages }}" 
+    state: present
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: "Install pyenv if Centos"
+  yum: 
+    name: "{{ packages }}"
+    state: present
+  become: true
+  when: ansible_os_family == "CentOS"
+
+- name: "Install python version"
+  shell: "source {{ ansible_env.HOME }}/.zshrc && pyenv install {{ item }}"
+  args:
+    executable: /bin/zsh
+    creates: "{{ ansible_env.HOME }}/.pyenv/versions/{{ item }}"
+  loop: "{{ python_versions }}"
+
+- name: "Set {{ python_default_version }} as python version"
+  shell: "source {{ ansible_env.HOME }}/.zshrc && pyenv global {{python_default_version}}"
+  args:
+    executable: /bin/zsh
+
+- name: "Checking python version"
+  shell: "pyenv version"
+  args:
+    executable: /bin/zsh
+  register: version_python
+
+- name: "Show python version"
+  debug:
+    msg: "Current python version is {{ version_python.stdout }}"

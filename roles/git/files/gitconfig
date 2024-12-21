@@ -1,12 +1,15 @@
 [user]
-  email = flmmartins@gmail.com
   name = Fernanda Martins
+[includeIf "gitdir:~/work/"]
+  path = ~/work/.gitconfig
+[includeIf "gitdir:~/personal/"]
+  path = ~/personal/.gitconfig
 [color]
   ui = auto
   diff = auto
 [core]
-  excludesfile = /home/flmmartins/.gitignore_global
   editor = vim
+  excludesfile = ~/.gitignore
 [color "diff"]
   old = red
   new = green
@@ -17,7 +20,16 @@
   br = branch
   l = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%C(bold blue) %s %Cgreen(%cr) %C(bold blue)<%an> %Creset' --abbrev-commit
   p = git pull --rebase
+  amend = commit -a --amend --no-edit --date=now --reset-author
+  psf   = push -f
 [color "decorate"]
   HEAD = green
   branch = cyan
   remoteBranch = red
+[credential "https://gitlab.com"]
+  helper = osxkeychain
+[credential "https://github.com"]
+  helper = osxkeychain
+[init]
+  defaultBranch = main
+#  templatedir = ~/.git-templates

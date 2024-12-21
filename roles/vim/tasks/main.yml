@@ -5,7 +5,7 @@
   when: ansible_os_family == "CentOS"
 
 - name: "Install package in Mac"
-  homebrew: state=present name=vim
+  community.general.homebrew: state=present name=vim
   when: ansible_os_family == "Darwin"
 
 - name: "Install package in Debian"
@@ -18,10 +18,11 @@
     dest: "{{ ansible_env.HOME }}/.vim/bundle/Vundle.vim"
 
 - name: "Adds vimrc file"
-  file:
+  copy:
     src: vimrc
     dest: "{{ ansible_env.HOME }}/.vimrc"
-    state: file
+    mode: 0640
+    owner: "{{ lookup('env', 'USER') }}"
 
 - name: "Install plugins from vimrc in non-interactive mode"
   shell: "echo | echo | vim +PluginInstall +qall &>/dev/null"
