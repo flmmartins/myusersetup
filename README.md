@@ -67,19 +67,3 @@ defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false   
 3. cd $HOME && mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
 4. echo 'export PATH="$HOME/homebrew/bin:$PATH"' >> .zprofile
 5. Reopen terminal
-
-# Windows Provisioning (not finalized)
-The configure_cygwin script configures cygwin
-
-## Requirements to run
-On cygwin setup you need to install WGET
-
-## Softwares for Windows to be used along with cygwin
-TODO: Put them in Chocolatey automation
-- VirtualBox
-- VirtualBox Extension Pack
-- Vagrant
-- Notepadd++
-- SupperPutty
-- WinSCP
-- GitHub or GitSCM
