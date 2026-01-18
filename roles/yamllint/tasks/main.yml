@@ -1,4 +1,23 @@
 ---
+- name: "Install package in CentOS"
+  ansible.builtin.dnf:
+    name: yamllint
+    state: present
+  become: true
+  when: ansible_os_family == "CentOS"
+
+- name: "Install package in Mac"
+  community.general.homebrew:
+    name: yamllint
+    state: present
+  when: ansible_os_family == "Darwin"
+
+- name: "Install package in Debian"
+  ansible.builtin.apt:
+    name: yamllint
+    state: present
+  when: ansible_os_family == "Debian"
+
 - name: "Creates config folder"
   ansible.builtin.file:
     path: "{{ ansible_facts['env']['HOME'] }}/.config/yamllint"
