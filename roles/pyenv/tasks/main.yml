@@ -3,21 +3,21 @@
   community.general.homebrew:
     name: "{{ pyenv_packages }}"
     state: present
-  when: ansible_os_family == "Darwin"
+  when: ansible_facts['os_family'] == "Darwin"
 
 - name: "Install pyenv if Debian"
   ansible.builtin.apt:
     name: "{{ pyenv_packages }}"
     state: present
   become: true
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
 
 - name: "Install pyenv if Centos"
   ansible.builtin.dnf:
     name: "{{ pyenv_packages }}"
     state: present
   become: true
-  when: ansible_os_family == "CentOS"
+  when: ansible_facts['os_family'] == "CentOS"
 
 - name: "Install python version"
   ansible.builtin.shell: "source {{ ansible_facts['env']['HOME'] }}/.zshrc && pyenv install {{ item }}"

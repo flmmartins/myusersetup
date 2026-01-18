@@ -4,19 +4,19 @@
     name: vim
     state: present
   become: true
-  when: ansible_os_family == "CentOS"
+  when: ansible_facts['os_family'] == "CentOS"
 
 - name: "Install package in Mac"
   community.general.homebrew:
     name: vim
     state: present
-  when: ansible_os_family == "Darwin"
+  when: ansible_facts['os_family'] == "Darwin"
 
 - name: "Install package in Debian"
   ansible.builtin.apt:
     name: vim
     state: present
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
 
 - name: "Installs Vundle" # noqa: latest
   ansible.builtin.git:
