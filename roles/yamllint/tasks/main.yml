@@ -1,0 +1,13 @@
+---
+- name: "Creates config folder"
+  ansible.builtin.file:
+    path: "{{ ansible_facts['env']['HOME'] }}/.config/yamllint"
+    state: directory
+    mode: "0744"
+
+- name: "Adds yamllint config"
+  ansible.builtin.copy:
+    src: yamllint-config
+    dest: "{{ ansible_facts['env']['HOME'] }}/.config/yamllint/config"
+    mode: "0644"
+    owner: "{{ lookup('env', 'USER') }}"

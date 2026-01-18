@@ -30,6 +30,7 @@
     - yq
     - yamllint
     - colima
+    - opencode
 
     apps:
     - google-chrome
@@ -59,6 +60,11 @@
       ansible.builtin.import_role:
         name: shell
       tags: ['shell']
+
+    - name: "Import yamllint"
+      ansible.builtin.import_role:
+        name: yamllint
+      tags: ['yamllint']
 
     - name: "Import SSH"
       ansible.builtin.import_role:
