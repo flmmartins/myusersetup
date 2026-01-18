@@ -1,0 +1,26 @@
+---
+- name: "Install package in CentOS"
+  ansible.builtin.dnf:
+    name: opencode
+    state: present
+  become: true
+  when: ansible_facts['os_family'] == "CentOS"
+
+- name: "Install package in Mac"
+  community.general.homebrew:
+    name: opencode
+    state: present
+  when: ansible_facts['os_family'] == "Darwin"
+
+- name: "Install package in Debian"
+  ansible.builtin.apt:
+    name: opencode
+    state: present
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: "Add config"
+  ansible.builtin.copy:
+    src: opencode-config
+    dest: "{{ ansible_facts['env']['HOME'] }}/.config/opencode/opencode.json"
+    mode: "0644"
+    owner: "{{ lookup('env', 'USER') }}"

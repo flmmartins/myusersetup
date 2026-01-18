@@ -66,6 +66,11 @@
         name: yamllint
       tags: ['yamllint']
 
+    - name: "Import AI"
+      ansible.builtin.import_role:
+        name: ai
+      tags: ['ai']
+
     - name: "Import SSH"
       ansible.builtin.import_role:
         name: ssh
