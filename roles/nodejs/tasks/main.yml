@@ -1,28 +1,32 @@
 ---
 - name: Install nvm
-  shell: >
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh | bash
+  ansible.builtin.shell:
+    cmd: |
+      set -o pipefail
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/{{ nodejs_nvm_version }}/install.sh | bash
   args:
-    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+    creates: "{{ ansible_facts['env']['HOME'] }}/.nvm/nvm.sh"
 
-- name: "Install node version {{ node_versions }}"
-  shell: "source {{ ansible_env.HOME }}/.zshrc && nvm install {{ item }}"
+- name: "Install node version {{ nodejs_version }}"
+  ansible.builtin.shell: "source {{ ansible_facts['env']['HOME'] }}/.zshrc && nvm install {{ item }}"
   args:
     executable: /bin/zsh
-    creates: "{{ ansible_env.HOME }}/.nvm/versions/node/{{ item }}"
-  loop: "{{ node_versions }}"
+    creates: "{{ ansible_facts['env']['HOME'] }}/.nvm/versions/node/{{ item }}"
+  loop: "{{ nodejs_version }}"
 
-- name: "Set node default version to {{ node_default_version }}"
-  shell: "source {{ ansible_env.HOME }}/.zshrc && nvm alias default {{ node_default_version }}"
+- name: "Set node default version to {{ nodejs_default_version }}"
+  ansible.builtin.shell: "source {{ ansible_facts['env']['HOME'] }}/.zshrc && nvm alias default {{ nodejs_default_version }}"
   args:
     executable: /bin/zsh
+  changed_when: true
 
 - name: "Checking node version"
-  shell: "source {{ ansible_env.HOME }}/.zshrc && nvm current"
+  ansible.builtin.shell: "source {{ ansible_facts['env']['HOME'] }}/.zshrc && nvm current"
   args:
     executable: /bin/zsh
-  register: version_node
+  register: nodejs_current_version
+  changed_when: true
 
 - name: "Show node version"
-  debug:
-    msg: "Current node version is {{ version_node.stdout }}"
+  ansible.builtin.debug:
+    msg: "Current node version is {{ nodejs_current_version.stdout }}"

@@ -1,10 +1,10 @@
 mymachines: # Ansible group of machines
   hosts:
     mywindows: # Name of my machine
-      ansible_host: 172.19.144.1 #IP of machine, replace by yours
-      ansible_user: flmma #User of windows machine
+      ansible_host: 172.19.144.1 # IP of machine, replace by yours
+      ansible_user: flmma # User of windows machine
       ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
-      #Added shell_type cause I had failed to create temporary directory
-      #If you need to run powershell script this needs to be changed on windows and here
-      ansible_shell_type: cmd
+      # Added ansible.builtin.shell_type cause I had failed to create temporary directory
+      # If you need to run poweransible.builtin.shell script this needs to be changed on windows and here
+      ansible_ansible.builtin.shell_type: cmd
       ansible_connection: ssh

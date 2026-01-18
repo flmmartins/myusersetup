@@ -1,4 +1,6 @@
-- hosts: mymachines
+- name: "Install windows playbook"
+  hosts: mymachines
   tasks:
-    - name: Show system information
-      debug: msg="{{ ansible_distribution }}"
+    - name: "Show system information"
+      ansible.builtin.debug:
+        msg: "{{ ansible_distribution }}"

@@ -47,7 +47,7 @@ Now test by going to WSL and doing: ssh <ansible_user>@IP
 ## Enable virtualization
 * Enable virtualization on windows
 * Go to Windows Features on or off > Enable Virtual Machine Platform and Windows Hypervisor Platform
-* Install WSL by openin powershell as administrator and running: `wsl --install -d <distro>`
+* Install WSL by openin poweransible.builtin.shell as administrator and running: `wsl --install -d <distro>`
 * On WSL install:
 
 ```

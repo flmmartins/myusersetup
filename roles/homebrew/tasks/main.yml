@@ -1,0 +1,17 @@
+---
+- name: Update Homebrew
+  community.general.homebrew:
+    update_homebrew: true
+    upgrade_all: true
+
+- name: Install cli
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ cli_apps }}"
+
+- name: Install cask
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ apps }}"

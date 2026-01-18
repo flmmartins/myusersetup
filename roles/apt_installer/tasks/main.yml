@@ -1,13 +1,16 @@
 ---
 - name: "Set fact with package list"
-  set_fact:
-    packages: "{{ apps }} + {{ cli_apps }}"
+  ansible.builtin.set_fact:
+    apt_installer_packages: "{{ apps }} + {{ cli_apps }}"
 
 - name: "Update cache"
-  apt: update_cache=yes
+  ansible.builtin.apt:
+    update_cache: true
   become: true
 
 - name: "Install packages"
-  apt: state=present name={{ item }}
-  with_items: "{{ packages }}"
+  ansible.builtin.apt:
+    state: present
+    name: "{{ item }}"
+  with_items: "{{ apt_installer_packages }}"
   become: true

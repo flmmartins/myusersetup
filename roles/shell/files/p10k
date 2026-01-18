@@ -82,13 +82,13 @@
     toolbox                 # toolbox name (https://github.com/containers/toolbox)
     context                 # user@hostname
     nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
-    ranger                  # ranger shell (https://github.com/ranger/ranger)
-    nnn                     # nnn shell (https://github.com/jarun/nnn)
-    lf                      # lf shell (https://github.com/gokcehan/lf)
-    xplr                    # xplr shell (https://github.com/sayanarijit/xplr)
-    vim_shell               # vim shell indicator (:sh)
-    midnight_commander      # midnight commander shell (https://midnight-commander.org/)
-    nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
+    ranger                  # ranger ansible.builtin.shell (https://github.com/ranger/ranger)
+    nnn                     # nnn ansible.builtin.shell (https://github.com/jarun/nnn)
+    lf                      # lf ansible.builtin.shell (https://github.com/gokcehan/lf)
+    xplr                    # xplr ansible.builtin.shell (https://github.com/sayanarijit/xplr)
+    vim_ansible.builtin.shell               # vim ansible.builtin.shell indicator (:sh)
+    midnight_commander      # midnight commander ansible.builtin.shell (https://midnight-commander.org/)
+    nix_ansible.builtin.shell               # nix ansible.builtin.shell (https://nixos.org/nixos/nix-pills/developing-with-nix-ansible.builtin.shell.html)
     # vpn_ip                # virtual private network indicator
     # load                  # CPU load
     # disk_usage            # disk usage
@@ -583,13 +583,13 @@
   #
   # Available sources:
   #
-  # - shell   `asdf current` says "set by ASDF_${TOOL}_VERSION environment variable"
+  # - ansible.builtin.shell   `asdf current` says "set by ASDF_${TOOL}_VERSION environment variable"
   # - local   `asdf current` says "set by /some/not/home/directory/file"
   # - global  `asdf current` says "set by /home/username/file"
   #
-  # Note: If this parameter is set to (shell local global), it won't hide tools.
+  # Note: If this parameter is set to (ansible.builtin.shell local global), it won't hide tools.
   # Tip:  Override this parameter for ${TOOL} with POWERLEVEL9K_ASDF_${TOOL}_SOURCES.
-  typeset -g POWERLEVEL9K_ASDF_SOURCES=(shell local global)
+  typeset -g POWERLEVEL9K_ASDF_SOURCES=(ansible.builtin.shell local global)
 
   # If set to false, hide tool versions that are the same as global.
   #
@@ -706,54 +706,54 @@
   # Custom icon.
   # typeset -g POWERLEVEL9K_NORDVPN_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
-  #################[ ranger: ranger shell (https://github.com/ranger/ranger) ]##################
-  # Ranger shell color.
+  #################[ ranger: ranger ansible.builtin.shell (https://github.com/ranger/ranger) ]##################
+  # Ranger ansible.builtin.shell color.
   typeset -g POWERLEVEL9K_RANGER_FOREGROUND=178
   # Custom icon.
   # typeset -g POWERLEVEL9K_RANGER_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
-  ######################[ nnn: nnn shell (https://github.com/jarun/nnn) ]#######################
-  # Nnn shell color.
+  ######################[ nnn: nnn ansible.builtin.shell (https://github.com/jarun/nnn) ]#######################
+  # Nnn ansible.builtin.shell color.
   typeset -g POWERLEVEL9K_NNN_FOREGROUND=72
   # Custom icon.
   # typeset -g POWERLEVEL9K_NNN_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
-  ######################[ lf: lf shell (https://github.com/gokcehan/lf) ]#######################
-  # lf shell color.
+  ######################[ lf: lf ansible.builtin.shell (https://github.com/gokcehan/lf) ]#######################
+  # lf ansible.builtin.shell color.
   typeset -g POWERLEVEL9K_LF_FOREGROUND=72
   # Custom icon.
   # typeset -g POWERLEVEL9K_LF_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
-  ##################[ xplr: xplr shell (https://github.com/sayanarijit/xplr) ]##################
-  # xplr shell color.
+  ##################[ xplr: xplr ansible.builtin.shell (https://github.com/sayanarijit/xplr) ]##################
+  # xplr ansible.builtin.shell color.
   typeset -g POWERLEVEL9K_XPLR_FOREGROUND=72
   # Custom icon.
   # typeset -g POWERLEVEL9K_XPLR_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
-  ###########################[ vim_shell: vim shell indicator (:sh) ]###########################
-  # Vim shell indicator color.
-  typeset -g POWERLEVEL9K_VIM_SHELL_FOREGROUND=34
+  ###########################[ vim_ansible.builtin.shell: vim ansible.builtin.shell indicator (:sh) ]###########################
+  # Vim ansible.builtin.shell indicator color.
+  typeset -g POWERLEVEL9K_VIM_ansible.builtin.shell_FOREGROUND=34
   # Custom icon.
-  # typeset -g POWERLEVEL9K_VIM_SHELL_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_VIM_ansible.builtin.shell_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
-  ######[ midnight_commander: midnight commander shell (https://midnight-commander.org/) ]######
-  # Midnight Commander shell color.
+  ######[ midnight_commander: midnight commander ansible.builtin.shell (https://midnight-commander.org/) ]######
+  # Midnight Commander ansible.builtin.shell color.
   typeset -g POWERLEVEL9K_MIDNIGHT_COMMANDER_FOREGROUND=178
   # Custom icon.
   # typeset -g POWERLEVEL9K_MIDNIGHT_COMMANDER_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
-  #[ nix_shell: nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html) ]##
-  # Nix shell color.
-  typeset -g POWERLEVEL9K_NIX_SHELL_FOREGROUND=74
+  #[ nix_ansible.builtin.shell: nix ansible.builtin.shell (https://nixos.org/nixos/nix-pills/developing-with-nix-ansible.builtin.shell.html) ]##
+  # Nix ansible.builtin.shell color.
+  typeset -g POWERLEVEL9K_NIX_ansible.builtin.shell_FOREGROUND=74
 
-  # Display the icon of nix_shell if PATH contains a subdirectory of /nix/store.
-  # typeset -g POWERLEVEL9K_NIX_SHELL_INFER_FROM_PATH=false
+  # Display the icon of nix_ansible.builtin.shell if PATH contains a subdirectory of /nix/store.
+  # typeset -g POWERLEVEL9K_NIX_ansible.builtin.shell_INFER_FROM_PATH=false
 
   # Tip: If you want to see just the icon without "pure" and "impure", uncomment the next line.
-  # typeset -g POWERLEVEL9K_NIX_SHELL_CONTENT_EXPANSION=
+  # typeset -g POWERLEVEL9K_NIX_ansible.builtin.shell_CONTENT_EXPANSION=
 
   # Custom icon.
-  # typeset -g POWERLEVEL9K_NIX_SHELL_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_NIX_ansible.builtin.shell_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ##################################[ disk_usage: disk usage ]##################################
   # Colors for different levels of disk usage.
@@ -933,7 +933,7 @@
   # Pyenv color.
   typeset -g POWERLEVEL9K_PYENV_FOREGROUND=37
   # Hide python version if it doesn't come from one of these sources.
-  typeset -g POWERLEVEL9K_PYENV_SOURCES=(shell local global)
+  typeset -g POWERLEVEL9K_PYENV_SOURCES=(ansible.builtin.shell local global)
   # If set to false, hide python version if it's the same as global:
   # $(pyenv version-name) == $(pyenv global).
   typeset -g POWERLEVEL9K_PYENV_PROMPT_ALWAYS_SHOW=false
@@ -959,7 +959,7 @@
   # Goenv color.
   typeset -g POWERLEVEL9K_GOENV_FOREGROUND=37
   # Hide go version if it doesn't come from one of these sources.
-  typeset -g POWERLEVEL9K_GOENV_SOURCES=(shell local global)
+  typeset -g POWERLEVEL9K_GOENV_SOURCES=(ansible.builtin.shell local global)
   # If set to false, hide go version if it's the same as global:
   # $(goenv version-name) == $(goenv global).
   typeset -g POWERLEVEL9K_GOENV_PROMPT_ALWAYS_SHOW=false
@@ -972,7 +972,7 @@
   # Nodenv color.
   typeset -g POWERLEVEL9K_NODENV_FOREGROUND=70
   # Hide node version if it doesn't come from one of these sources.
-  typeset -g POWERLEVEL9K_NODENV_SOURCES=(shell local global)
+  typeset -g POWERLEVEL9K_NODENV_SOURCES=(ansible.builtin.shell local global)
   # If set to false, hide node version if it's the same as global:
   # $(nodenv version-name) == $(nodenv global).
   typeset -g POWERLEVEL9K_NODENV_PROMPT_ALWAYS_SHOW=false
@@ -1069,7 +1069,7 @@
   # Rbenv color.
   typeset -g POWERLEVEL9K_RBENV_FOREGROUND=168
   # Hide ruby version if it doesn't come from one of these sources.
-  typeset -g POWERLEVEL9K_RBENV_SOURCES=(shell local global)
+  typeset -g POWERLEVEL9K_RBENV_SOURCES=(ansible.builtin.shell local global)
   # If set to false, hide ruby version if it's the same as global:
   # $(rbenv version-name) == $(rbenv global).
   typeset -g POWERLEVEL9K_RBENV_PROMPT_ALWAYS_SHOW=false
@@ -1098,7 +1098,7 @@
   # Lua color.
   typeset -g POWERLEVEL9K_LUAENV_FOREGROUND=32
   # Hide lua version if it doesn't come from one of these sources.
-  typeset -g POWERLEVEL9K_LUAENV_SOURCES=(shell local global)
+  typeset -g POWERLEVEL9K_LUAENV_SOURCES=(ansible.builtin.shell local global)
   # If set to false, hide lua version if it's the same as global:
   # $(luaenv version-name) == $(luaenv global).
   typeset -g POWERLEVEL9K_LUAENV_PROMPT_ALWAYS_SHOW=false
@@ -1111,7 +1111,7 @@
   # Java color.
   typeset -g POWERLEVEL9K_JENV_FOREGROUND=32
   # Hide java version if it doesn't come from one of these sources.
-  typeset -g POWERLEVEL9K_JENV_SOURCES=(shell local global)
+  typeset -g POWERLEVEL9K_JENV_SOURCES=(ansible.builtin.shell local global)
   # If set to false, hide java version if it's the same as global:
   # $(jenv version-name) == $(jenv global).
   typeset -g POWERLEVEL9K_JENV_PROMPT_ALWAYS_SHOW=false
@@ -1124,7 +1124,7 @@
   # Perl color.
   typeset -g POWERLEVEL9K_PLENV_FOREGROUND=67
   # Hide perl version if it doesn't come from one of these sources.
-  typeset -g POWERLEVEL9K_PLENV_SOURCES=(shell local global)
+  typeset -g POWERLEVEL9K_PLENV_SOURCES=(ansible.builtin.shell local global)
   # If set to false, hide perl version if it's the same as global:
   # $(plenv version-name) == $(plenv global).
   typeset -g POWERLEVEL9K_PLENV_PROMPT_ALWAYS_SHOW=false
@@ -1147,7 +1147,7 @@
   # PHP color.
   typeset -g POWERLEVEL9K_PHPENV_FOREGROUND=99
   # Hide php version if it doesn't come from one of these sources.
-  typeset -g POWERLEVEL9K_PHPENV_SOURCES=(shell local global)
+  typeset -g POWERLEVEL9K_PHPENV_SOURCES=(ansible.builtin.shell local global)
   # If set to false, hide php version if it's the same as global:
   # $(phpenv version-name) == $(phpenv global).
   typeset -g POWERLEVEL9K_PHPENV_PROMPT_ALWAYS_SHOW=false
@@ -1160,7 +1160,7 @@
   # Scala color.
   typeset -g POWERLEVEL9K_SCALAENV_FOREGROUND=160
   # Hide scala version if it doesn't come from one of these sources.
-  typeset -g POWERLEVEL9K_SCALAENV_SOURCES=(shell local global)
+  typeset -g POWERLEVEL9K_SCALAENV_SOURCES=(ansible.builtin.shell local global)
   # If set to false, hide scala version if it's the same as global:
   # $(scalaenv version-name) == $(scalaenv global).
   typeset -g POWERLEVEL9K_SCALAENV_PROMPT_ALWAYS_SHOW=false
@@ -1174,10 +1174,10 @@
   typeset -g POWERLEVEL9K_HASKELL_STACK_FOREGROUND=172
   # Hide haskell version if it doesn't come from one of these sources.
   #
-  #   shell:  version is set by STACK_YAML
+  #   ansible.builtin.shell:  version is set by STACK_YAML
   #   local:  version is set by stack.yaml up the directory tree
   #   global: version is set by the implicit global project (~/.stack/global-project/stack.yaml)
-  typeset -g POWERLEVEL9K_HASKELL_STACK_SOURCES=(shell local)
+  typeset -g POWERLEVEL9K_HASKELL_STACK_SOURCES=(ansible.builtin.shell local)
   # If set to false, hide haskell version if it's the same as in the implicit global project.
   typeset -g POWERLEVEL9K_HASKELL_STACK_ALWAYS_SHOW=true
   # Custom icon.

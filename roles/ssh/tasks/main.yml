@@ -1,14 +1,15 @@
 ---
 - name: "Creates SSH folder"
-  file: 
-    path: "{{ ansible_env.HOME }}/.ssh"
+  ansible.builtin.file:
+    path: "{{ ansible_facts['env']['HOME'] }}/.ssh"
     state: directory
-    mode: 0700
+    mode: "0700"
 
 - name: "Creates SSH config"
-  template:
+  ansible.builtin.template:
     src: ssh_config.j2
-    dest: "{{ ansible_env.HOME }}/.ssh/config"
-    mode: 0700
+    dest: "{{ ansible_facts['env']['HOME'] }}/.ssh/config"
+    mode: "0700"
 
-- include: create_ssh_key.yml
+- name: "Create ssh key"
+  ansible.builtin.include_tasks: create_ssh_key.yml

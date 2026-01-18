@@ -1,5 +1,5 @@
 ---
 - name: "Installs Jenv"
-  git:
+  ansible.builtin.git: # noqa: latest
     repo: "https://github.com/gcuisinier/jenv.git"
-    dest: "{{ ansible_env.HOME }}/.jenv"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.jenv"

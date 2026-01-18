@@ -6,7 +6,7 @@ Install ansible with pip
 Run
 
 ```bash
-ansible-playbook -kK --ask-vault-pass playbook.yml --extra-vars "ip=<ADD-MACHINE-IP> user_name=ADD-MACHINE-USERNAME"
+ansible-playbook -kK -i inventory --ask-vault-pass playbook.yml
 ```
 
 ### To run remotely use:
@@ -59,11 +59,3 @@ ssh-keygen -o -a 200 -t ed25519 -f ~/.ssh/id_ed25519 -C "fernandamartins@worklap
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false         # For VS Code
 defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false # For VS Code Insider
 defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false    # For VS Codium
-
-## Multi user setup for Brew
-
-1. Uninstall existing
-2. xcode-select --install
-3. cd $HOME && mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
-4. echo 'export PATH="$HOME/homebrew/bin:$PATH"' >> .zprofile
-5. Reopen terminal

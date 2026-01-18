@@ -1,19 +1,15 @@
 ---
-- ansible.builtin.import_role:
-    name: geerlingguy.mac.homebrew
-  vars:
-    homebrew_installed_packages: "{{ cli_apps }}"
-    homebrew_cask_apps: "{{ apps }}"
-  when: ansible_os_family == "Darwin"
+- name: Is Mac OS?
+  ansible.builtin.import_role:
+    name: homebrew
+  when: ansible_facts['os_family'] == "Darwin"
 
-- ansible.builtin.import_role:
-    name: geerlingguy.mac.dock
-  when: ansible_os_family == "Darwin"
-
-- ansible.builtin.import_role:
+- name: Is Debian?
+  ansible.builtin.import_role:
     name: apt_installer
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
 
-- ansible.builtin.import_role:
+- name: Is CentOS?
+  ansible.builtin.import_role:
     name: yum_installer
-  when: ansible_os_family == "CentOS"
+  when: ansible_facts['os_family'] == "CentOS"

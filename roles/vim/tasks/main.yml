@@ -1,30 +1,40 @@
 ---
 - name: "Install package in CentOS"
-  yum: state=present name=vim
+  ansible.builtin.dnf:
+    name: vim
+    state: present
   become: true
   when: ansible_os_family == "CentOS"
 
 - name: "Install package in Mac"
-  community.general.homebrew: state=present name=vim
+  community.general.homebrew:
+    name: vim
+    state: present
   when: ansible_os_family == "Darwin"
 
 - name: "Install package in Debian"
-  apt: state=present name=vim
+  ansible.builtin.apt:
+    name: vim
+    state: present
   when: ansible_os_family == "Debian"
 
-- name: "Installs Vundle"
-  git:
+- name: "Installs Vundle" # noqa: latest
+  ansible.builtin.git:
     repo: "https://github.com/VundleVim/Vundle.vim.git"
-    dest: "{{ ansible_env.HOME }}/.vim/bundle/Vundle.vim"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.vim/bundle/Vundle.vim"
 
 - name: "Adds vimrc file"
-  copy:
+  ansible.builtin.copy:
     src: vimrc
-    dest: "{{ ansible_env.HOME }}/.vimrc"
-    mode: 0640
+    dest: "{{ ansible_facts['env']['HOME'] }}/.vimrc"
+    mode: "0640"
     owner: "{{ lookup('env', 'USER') }}"
 
 - name: "Install plugins from vimrc in non-interactive mode"
-  shell: "echo | echo | vim +PluginInstall +qall &>/dev/null"
+  ansible.builtin.shell:
+    cmd: |
+      set -o pipefail
+      echo | echo | vim +PluginInstall +qall &>/dev/null
   args:
-    chdir: "{{ ansible_env.HOME }}"
+    chdir: "{{ ansible_facts['env']['HOME'] }}"
+  changed_when: true

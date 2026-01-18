@@ -1,10 +1,11 @@
 ---
 - name: "Creates SSH key"
-  shell: "ssh-keygen -o -a 200 -t ed25519 -C '{{ ansible_hostname }}' -f {{ github_key_path }} -N {{ passphrase }}"
+  ansible.builtin.command: "ssh-keygen -o -a 200 -t ed25519 -C '{{ ansible_hostname }}' -f {{ ssh_github_key_path }} -N {{ ssh_passphrase }}"
   args:
-    creates: "{{ github_key_path }}"
+    creates: "{{ ssh_github_key_path }}"
 
-- name: "Fetch public key - please add this to github"
-  debug: var=item
+- name: "Fetch public key Please add this to github"
+  ansible.builtin.debug:
+    var: item
   with_file:
-  - "{{ github_key_path }}.pub"
+  - "{{ ssh_github_key_path }}.pub"

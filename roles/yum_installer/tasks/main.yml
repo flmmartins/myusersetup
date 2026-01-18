@@ -1,12 +1,15 @@
 ---
 - name: "Set fact with package list"
-  set_fact:
-    packages: "{{ apps }} + {{ cli_apps }}"
+  ansible.builtin.set_fact:
+    yum_installer_packages: "{{ apps }} + {{ cli_apps }}"
 
 - name: "Update Cache"
-  yum: update_cache=yes
+  ansible.builtin.dnf:
+    update_cache: true
 
 - name: "Install packages"
-  yum: state=present name={{ item }}
-  with_items: "{{ packages }}"
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ yum_installer_packages }}"
   become: true
